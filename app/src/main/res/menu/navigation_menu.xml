@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText"
+    android:id="@+id/nav_view">
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/Sezione1"
+        android:title="Avvisi"
+        android:checked="false" />
+    <item
+        android:title="Profilo utente"
+        android:checked="false"/>
+    <item
+        android:title="Contatti"
+        android:checked="false"/>
+    </group>
+
+
+
+</menu>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LISTA CARICHI</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="hyperlink"><a href="https://google.com">Recupero password</a></string>
+
+</resources>

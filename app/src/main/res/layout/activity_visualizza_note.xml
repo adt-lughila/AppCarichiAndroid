@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.appcarichi.activities.InsertNotaActivity"
+    tools:ignore="HardcodedText"
+    android:backgroundTint="@color/white"
+    tools:visibility="visible">
+
+    <LinearLayout
+        android:id="@+id/comandi_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="SELEZIONA"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="CODICE NOTA"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="DESCRIZIONE NOTA"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="COMMENTO"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/notelistview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comandi_note"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="0dp"
+        android:layout_weight="@integer/material_motion_duration_long_2"
+        tools:listitem="@layout/note_list_view">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:layout_below="@+id/notelistview"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/remove_nota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#CB504D"
+            android:text="CANCELLA NOTA"
+            android:textColor="@color/white"
+            android:textSize="20dp">
+
+        </Button>
+
+        <Button
+            android:id="@+id/modify_nota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#CB504D"
+            android:text="SALVA MODIFICHE"
+            android:textColor="@color/white"
+            android:textSize="20dp">
+
+        </Button>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

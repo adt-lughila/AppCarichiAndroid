@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgray"
+    android:backgroundTint="@color/lightgray"
+    android:gravity="center_horizontal"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.974"
+    tools:visibility="visible">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/logintext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="400dp"
+            tools:layout_editor_absoluteY="371dp" />
+
+        <TextView
+            android:id="@+id/usernametext"
+            android:layout_width="331dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/logintext"
+            android:layout_marginTop="15dp"
+            android:fontFamily="sans-serif"
+            android:text="Nome utente"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            tools:layout_editor_absoluteX="400dp"
+            tools:layout_editor_absoluteY="371dp" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_marginStart="21dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/usernametext"
+            android:layout_marginTop="20dp"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/passwordtext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/username"
+            android:layout_marginTop="15dp"
+            android:fontFamily="sans-serif"
+            android:text="Password"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            tools:layout_editor_absoluteX="400dp"
+            tools:layout_editor_absoluteY="371dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightgray"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:layout_below="@+id/passwordtext"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="25dp"
+                android:backgroundTint="@color/lightgray"
+                android:inputType="textPassword"
+                android:textSize="25sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/loginbutton"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:layout_marginStart="30dp"
+            android:backgroundTint="#cb504d"
+            android:text="Accedi"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    </LinearLayout>
+

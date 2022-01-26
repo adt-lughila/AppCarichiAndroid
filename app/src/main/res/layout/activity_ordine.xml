@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_drawer_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="500dp"
+    android:minHeight="400dp"
+    tools:context="com.appcarichi.activities.OrdineActivity"
+    tools:ignore="HardcodedText"
+    tools:visibility="visible">
+
+    <LinearLayout
+        android:id="@+id/ordini_title"
+        android:layout_width="match_parent"
+        android:elevation="3dp"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:text="ORDINI NEL CARICO"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp">
+
+        </TextView>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/span_ordini"
+        android:layout_below="@+id/ordini_title"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/lightgray" />
+
+
+        <LinearLayout
+            android:layout_below="@+id/span_ordini"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ExpandableListView
+                android:id="@+id/orderlistview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="@integer/material_motion_duration_long_2"
+                tools:listitem="@layout/order_list_view" >
+
+            </ExpandableListView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/layy"
+                android:backgroundTint="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:elevation="3dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/lightgray"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/RefreshButton"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="550dp"
+                    android:backgroundTint="#cb504d"
+                    android:text="SPUNTA" />
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+</RelativeLayout>
