@@ -18,9 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import model.Nota;
+import com.appcarichi.model.Nota;
 import com.example.listviewex.R;
-import model.Rigaordine;
+import com.appcarichi.model.Rigaordine;
 import com.example.listviewex.databinding.ActivityInsertNotaBinding;
 
 import org.json.JSONException;

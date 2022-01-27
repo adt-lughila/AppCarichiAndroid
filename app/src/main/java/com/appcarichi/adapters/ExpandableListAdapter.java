@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.appcarichi.activities.InsertNotaActivity;
 import com.appcarichi.activities.CheckNoteActivity;
-import model.Ordine;
+import com.appcarichi.model.Ordine;
 import com.example.listviewex.R;
-import model.Rigaordine;
+import com.appcarichi.model.Rigaordine;
 
 import java.util.HashMap;
 import java.util.List;

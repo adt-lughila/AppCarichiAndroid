@@ -1,4 +1,4 @@
-package model;
+package com.appcarichi.model;
 
 import java.io.Serializable;
 

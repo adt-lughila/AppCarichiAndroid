@@ -19,8 +19,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.adapters.NoteListAdapter;
-import model.Nota;
-import model.Rigaordine;
+import com.appcarichi.model.Nota;
+import com.appcarichi.model.Rigaordine;
 import com.example.listviewex.R;
 import com.example.listviewex.databinding.ActivityVisualizzaNoteBinding;
 

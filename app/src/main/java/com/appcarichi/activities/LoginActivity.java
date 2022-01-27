@@ -16,7 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import model.User;
+import com.appcarichi.model.User;
 import com.example.listviewex.R;
 import com.example.listviewex.databinding.LoginBinding;
 
