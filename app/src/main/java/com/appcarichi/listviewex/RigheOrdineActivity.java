@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import com.example.listviewex.databinding.ActivityMainBinding;
 import com.example.listviewex.databinding.RigheOrdineBinding;
 
-public class RigheOrdine extends AppCompatActivity {
+public class RigheOrdineActivity extends AppCompatActivity {
 
     RigheOrdineBinding binding;
 

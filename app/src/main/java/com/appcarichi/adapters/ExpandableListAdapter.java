@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -118,6 +119,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         ImageButton checknote = convertView.findViewById(R.id.checknote);
         insertnote.setTag(ro);
         checknote.setTag(ro);
+        CheckBox spunta = convertView.findViewById(R.id.spunta);
 
         insertnote.setOnClickListener(new View.OnClickListener() {
             @Override

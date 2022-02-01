@@ -4,4 +4,12 @@
     <string name="nav_close">Close</string>
     <string name="hyperlink"><a href="https://google.com">Recupero password</a></string>
 
+    <string-array name="tiponote">
+        <item>Generica</item>
+        <item>Collo assente</item>
+        <item>Collo in più</item>
+        <item>Imballo rotto</item>
+        <item>Collo raggruppato</item>
+    </string-array>
+
 </resources>

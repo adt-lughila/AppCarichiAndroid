@@ -25,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/material_motion_duration_long_2"
                 tools:listitem="@layout/list_view">
-
             </ListView>
 
             <View

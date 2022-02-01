@@ -15,7 +15,7 @@
         <activity android:name="com.appcarichi.activities.InsertNotaActivity"
             android:theme="@android:style/Theme.Material.Light.DialogWhenLarge.NoActionBar"></activity>
         <activity android:name="com.appcarichi.activities.MainActivity"></activity>
-        <activity android:name="com.appcarichi.listviewex.RigheOrdine"></activity>
+        <activity android:name="com.appcarichi.listviewex.RigheOrdineActivity"></activity>
         <activity android:name="com.appcarichi.activities.OrdineActivity"></activity>
         <activity android:name="com.appcarichi.activities.LoginActivity"
             android:exported="true"

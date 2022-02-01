@@ -1,13 +1,22 @@
 package com.appcarichi.activities;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,70 +51,81 @@ public class InsertNotaActivity extends Activity {
         setContentView(binding.getRoot());
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         //getActionBar().hide();
+        setWindowHeight(32);
+        setWindowWidth(67);
 
 
         Intent i = this.getIntent();
         Rigaordine ro = (Rigaordine) i.getSerializableExtra("rigaordine");
 
-        LinearLayout inserireNote= findViewById(R.id.inserirenote);
-        salva = findViewById(R.id.save_nota);
+        salva = findViewById(R.id.salvanota);
         salva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /* operazione di insert nota*/
 
-                int count = inserireNote.getChildCount();
-                for (int i = 1; i < count - 1; i++) {
-                    LinearLayout linLay = (LinearLayout) inserireNote.getChildAt(i);
-                    RadioButton radioButton = (RadioButton) linLay.getChildAt(0);
-                    if (radioButton.isChecked()) {
-                        TextView txtcodicenota = (TextView) linLay.getChildAt(1);
-                        String codicenota = txtcodicenota.getText().toString();
-                        int codice_nota = Integer.valueOf(codicenota);
-                        TextView txtdescrizione = (TextView) linLay.getChildAt(2);
-                        String descrizione = txtdescrizione.getText().toString();
-                        TextView txtcommento = (TextView) linLay.getChildAt(3);
-                        String commento = txtcommento.getText().toString();
-                        Nota n=new Nota(ro.getIdrigarodine(),codice_nota,descrizione,commento);
-                        String url="http://192.168.1.158:8080/restCarichi/appCarichi/addnota";
-                        RequestQueue requestQueue = Volley.newRequestQueue(InsertNotaActivity.this);
+                int codicenota=0;
+                EditText commentonota = (EditText) findViewById(R.id.commentonota);
+                String commento = commentonota.getText().toString();
+                Spinner tiponota = (Spinner) findViewById(R.id.spinnernota);
+                String tipo = tiponota.getSelectedItem().toString();
 
-                        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                JSONObject jsonObject=new JSONObject(response);
-                                Toast.makeText(getApplicationContext(), "Nota salvata", Toast.LENGTH_SHORT).show();
+                Nota n = new Nota(ro.getIdrigarodine(), codicenota, tipo, commento);
+                String url = "http://192.168.1.158:8080/restCarichi/appCarichi/addnota";
+                RequestQueue requestQueue = Volley.newRequestQueue(InsertNotaActivity.this);
 
-                               }catch (JSONException e){
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(getApplicationContext(), "Nota salvata", Toast.LENGTH_SHORT).show();
 
-                            }
-                        }) {
-                            @Override
-                            protected Map<String, String> getParams() throws AuthFailureError {
-                                Map<String, String> params = new HashMap<>();
-                                params.put("idrigaordine", String.valueOf(ro.getIdrigarodine()));
-                                params.put("codicenota", codicenota);
-                                params.put("descrizione", descrizione);
-                                params.put("commento", commento);
-                                return params;
-                            }
-
-                        };
-                        requestQueue.add(stringRequest);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-                Intent intent = new Intent(InsertNotaActivity.this, InsertNotaActivity.class);
-                intent.putExtra("rigaordine", ro);
-                startActivity(intent);
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("idrigaordine", String.valueOf(ro.getIdrigarodine()));
+                        params.put("codicenota", "0");
+                        params.put("descrizione", tipo);
+                        params.put("commento", commento);
+                        return params;
+                    }
+
+                };
+                requestQueue.add(stringRequest);
+                Intent i = new Intent(InsertNotaActivity.this, InsertNotaActivity.class);
+                i.putExtra("rigaordine", ro);
+                startActivity(i);
                 finish();
             }
         });
+
+    }
+
+    private void setWindowHeight(int percent) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int screenHeight = metrics.heightPixels;
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.height = (int) (screenHeight * percent / 100);
+        this.getWindow().setAttributes(params);
+    }
+
+    private void setWindowWidth(int percent) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int screenHeight = metrics.widthPixels;
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.width = (int) (screenHeight * percent / 100);
+        this.getWindow().setAttributes(params);
     }
 }

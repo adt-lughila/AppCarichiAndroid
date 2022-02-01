@@ -3,8 +3,10 @@ package com.appcarichi.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -42,14 +44,15 @@ public class CheckNoteActivity extends Activity {
         setContentView(binding.getRoot());
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
+        setWindowHeight(65);
+
         Button elimina = findViewById(R.id.remove_nota);
         ListView notelistview=findViewById(R.id.notelistview);
 
+
         Intent intent=this.getIntent();
         Rigaordine ro = (Rigaordine) intent.getSerializableExtra("rigaordine");
-
         int idrigaordine = ro.getIdrigarodine();
-
 
         String url="http://192.168.1.158:8080/restCarichi/appCarichi/note/"+idrigaordine;
         ArrayList<Nota> note=new ArrayList<>();
@@ -111,12 +114,11 @@ public class CheckNoteActivity extends Activity {
                                             queue2.add(request);
                                         }
                                     }
-                                    Intent i = new Intent(CheckNoteActivity.this, CheckNoteActivity.class);
+                                   /* Intent i = new Intent(CheckNoteActivity.this, CheckNoteActivity.class);
                                     i.putExtra("rigaordine",ro);
-                                    finish();
-                                    overridePendingTransition(0, 0);
                                     startActivity(i);
-                                    overridePendingTransition(0, 0);
+                                    finish(); */
+
                                 }
                             });
 
@@ -133,6 +135,23 @@ public class CheckNoteActivity extends Activity {
         });
         queue.add(request);
 
+    }
+    private void setWindowHeight(int percent) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int screenHeight = metrics.heightPixels;
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.height = (int) (screenHeight * percent / 100);
+        this.getWindow().setAttributes(params);
+    }
+
+    private void setWindowWidth(int percent) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int screenHeight = metrics.widthPixels;
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.width = (int) (screenHeight * percent / 100);
+        this.getWindow().setAttributes(params);
     }
 }
 

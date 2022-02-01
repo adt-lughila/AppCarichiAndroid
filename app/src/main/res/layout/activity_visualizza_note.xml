@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/modNote"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -40,7 +41,7 @@
             android:textSize="20dp"/>
 
         <TextView
-            android:layout_width="400dp"
+            android:layout_width="354dp"
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="COMMENTO"
@@ -59,7 +60,6 @@
         android:layout_marginTop="0dp"
         android:layout_weight="@integer/material_motion_duration_long_2"
         tools:listitem="@layout/note_list_view">
-
     </ListView>
 
     <LinearLayout
