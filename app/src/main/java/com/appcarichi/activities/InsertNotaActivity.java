@@ -63,11 +63,12 @@ public class InsertNotaActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                int codicenota=0;
                 EditText commentonota = (EditText) findViewById(R.id.commentonota);
                 String commento = commentonota.getText().toString();
                 Spinner tiponota = (Spinner) findViewById(R.id.spinnernota);
                 String tipo = tiponota.getSelectedItem().toString();
+                int codicenota=getCodiceNota(tipo);
+                System.out.println(codicenota);
 
                 Nota n = new Nota(ro.getIdrigarodine(), codicenota, tipo, commento);
                 String url = "http://192.168.1.158:8080/restCarichi/appCarichi/addnota";
@@ -94,7 +95,7 @@ public class InsertNotaActivity extends Activity {
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> params = new HashMap<>();
                         params.put("idrigaordine", String.valueOf(ro.getIdrigarodine()));
-                        params.put("codicenota", "0");
+                        params.put("codicenota", String.valueOf(codicenota));
                         params.put("descrizione", tipo);
                         params.put("commento", commento);
                         return params;
@@ -127,5 +128,20 @@ public class InsertNotaActivity extends Activity {
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.width = (int) (screenHeight * percent / 100);
         this.getWindow().setAttributes(params);
+    }
+
+    private int getCodiceNota(String tipo){
+        if(tipo.equals("Generica")){
+            return 1;
+        }else if(tipo.equals("Collo assente")){
+            return 2;
+        }else if(tipo.equals("Collo in più")){
+            return 3;
+        }else if(tipo.equals("Imballo rotto")){
+            return 4;
+        }else if(tipo.equals("Collo raggruppato")){
+            return 5;
+        }
+        else{return 0;}
     }
 }
