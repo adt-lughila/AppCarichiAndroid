@@ -1,4 +1,4 @@
-package com.appcarichi.listviewex;
+package com.appcarichi.activities;
 
 import java.util.ArrayList;
 

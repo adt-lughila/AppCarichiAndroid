@@ -1,23 +1,15 @@
 package com.appcarichi.activities;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -28,9 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.model.Nota;
-import com.example.listviewex.R;
+import com.example.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
-import com.example.listviewex.databinding.ActivityInsertNotaBinding;
+import com.example.appcarichi.databinding.ActivityInsertNotaBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -100,7 +92,6 @@ public class InsertNotaActivity extends Activity {
                         params.put("commento", commento);
                         return params;
                     }
-
                 };
                 requestQueue.add(stringRequest);
                 Intent i = new Intent(InsertNotaActivity.this, InsertNotaActivity.class);

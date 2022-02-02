@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.appcarichi.activities.InsertNotaActivity;
 import com.appcarichi.activities.CheckNoteActivity;
 import com.appcarichi.model.Ordine;
-import com.example.listviewex.R;
+import com.example.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
 
 import java.util.HashMap;

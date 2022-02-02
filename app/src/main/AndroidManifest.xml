@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.listviewex">
+    package="com.example.appcarichi">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
@@ -15,7 +15,7 @@
         <activity android:name="com.appcarichi.activities.InsertNotaActivity"
             android:theme="@android:style/Theme.Material.Light.DialogWhenLarge.NoActionBar"></activity>
         <activity android:name="com.appcarichi.activities.MainActivity"></activity>
-        <activity android:name="com.appcarichi.listviewex.RigheOrdineActivity"></activity>
+        <activity android:name="com.appcarichi.activities.RigheOrdineActivity"></activity>
         <activity android:name="com.appcarichi.activities.OrdineActivity"></activity>
         <activity android:name="com.appcarichi.activities.LoginActivity"
             android:exported="true"

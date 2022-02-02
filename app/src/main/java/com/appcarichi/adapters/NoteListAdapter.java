@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.appcarichi.model.Nota;
-import com.example.listviewex.R;
+import com.example.appcarichi.R;
 
 import java.util.ArrayList;
 

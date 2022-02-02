@@ -14,11 +14,10 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.adapters.ExpandableListAdapter;
 import com.appcarichi.model.Ordine;
-import com.example.listviewex.R;
+import com.example.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
-import com.appcarichi.listviewex.VolleyCallback;
-import com.example.listviewex.databinding.ActivityOrdineBinding;
-import com.example.listviewex.databinding.RigheOrdineBinding;
+import com.example.appcarichi.databinding.ActivityOrdineBinding;
+import com.example.appcarichi.databinding.RigheOrdineBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -26,8 +26,8 @@ import com.android.volley.toolbox.Volley;
 
 import com.appcarichi.model.Carico;
 import com.appcarichi.adapters.ListAdapter;
-import com.example.listviewex.R;
-import com.example.listviewex.databinding.ActivityMainBinding;
+import com.example.appcarichi.R;
+import com.example.appcarichi.databinding.ActivityMainBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;

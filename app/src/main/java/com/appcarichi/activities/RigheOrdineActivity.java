@@ -1,15 +1,11 @@
-package com.appcarichi.listviewex;
+package com.appcarichi.activities;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
-import com.example.listviewex.databinding.ActivityMainBinding;
-import com.example.listviewex.databinding.RigheOrdineBinding;
+import com.example.appcarichi.databinding.ActivityMainBinding;
+import com.example.appcarichi.databinding.RigheOrdineBinding;
 
 public class RigheOrdineActivity extends AppCompatActivity {
 
