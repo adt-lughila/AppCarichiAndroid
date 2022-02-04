@@ -2,7 +2,9 @@ package com.appcarichi.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -110,7 +112,15 @@ public class OrdineActivity extends AppCompatActivity {
 
         adapter = new ExpandableListAdapter(this, ordini, childData);
         expandableListView.setAdapter(adapter);
-    /*    expandableListView.setOnChildClickListener((ExpandableListView.OnChildClickListener) this); */
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                //Nothing here ever fires
+                Intent intent = new Intent(OrdineActivity.this, SpuntaColloActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        });
     }
 
     public List<Rigaordine> getRigheOrdine(Ordine o, List<Rigaordine> ro){
