@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ListViewEx"
         android:networkSecurityConfig="@xml/network_security_config">
+        <activity android:name="com.appcarichi.activities.TrovaCaricoActivity"></activity>
         <activity android:name="com.appcarichi.activities.SpuntaColloActivity"></activity>
         <activity android:name="com.appcarichi.activities.CheckNoteActivity"
             android:theme="@android:style/Theme.Material.Light.DialogWhenLarge.NoActionBar"></activity>

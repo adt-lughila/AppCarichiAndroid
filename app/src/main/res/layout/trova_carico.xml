@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <SurfaceView
-        android:id="@+id/surface_view"
+        android:id="@+id/surface_view_trovacarico"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="150dp"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/barcode_text"
+        android:id="@+id/barcode_text_trovacarico"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -25,20 +25,20 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/surface_view" />
+        app:layout_constraintTop_toBottomOf="@id/surface_view_trovacarico" />
 
     <TextView
         android:id="@+id/insertcodetext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/barcode_text"
+        android:layout_below="@+id/barcode_text_trovacarico"
         android:layout_marginTop="90dp"
         android:text="Inserisci codice manualmente:"
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/barcode_text"
+        app:layout_constraintTop_toTopOf="@id/barcode_text_trovacarico"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="676dp"
         android:backgroundTint="#CB504D"
-        android:text="CONFERMA"
+        android:text="RICERCA"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,32 +65,16 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/suntadelcollo"
+        android:id="@+id/trovacaricotext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="468dp"
-        android:layout_marginTop="100dp"
-        android:text="Spunta del collo, carico "
+        android:layout_marginStart="556dp"
+        android:layout_marginTop="88dp"
+        android:text="Trova carico"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/idcaricospuntacollo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="00"
-        android:textAlignment="center"
-
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.408"
-        app:layout_constraintStart_toStartOf="@+id/suntadelcollo"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 

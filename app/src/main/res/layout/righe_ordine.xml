@@ -160,12 +160,24 @@
                     android:layout_width="100px"
                     android:layout_height="100px"
                     android:layout_gravity="center"
-                    android:layout_marginStart="110dp"
+                    android:layout_marginStart="80dp"
                     android:layout_marginTop="5dp"
                     android:onClick="insertNota"
                     android:src="@drawable/scrivinota"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/checknote"
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+
+                    android:onClick="checkNote"
+                    android:src="@drawable/legginota"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </LinearLayout>
@@ -174,31 +186,21 @@
             android:layout_width="85dp"
             android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/checknote"
-                android:layout_width="100px"
-                android:layout_height="100px"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-
-                android:onClick="checkNote"
-                android:src="@drawable/legginota"
-                android:textColor="@color/white" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="110dp"
-            android:layout_height="match_parent">
-
             <CheckBox
                 android:id="@+id/spunta"
-                android:layout_width="100px"
+                android:layout_width="wrap_content"
                 android:layout_height="100px"
                 android:layout_gravity="center"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp" />
         </LinearLayout>
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="100px"
+            android:text="SPUNTA"
+            android:backgroundTint="#cb504d"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>

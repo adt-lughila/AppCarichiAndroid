@@ -11,23 +11,22 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
 
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.appcarichi.R;
 import com.example.appcarichi.databinding.SpuntaColloBinding;
+import com.example.appcarichi.databinding.TrovaCaricoBinding;
+import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.Detector;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
+public class TrovaCaricoActivity extends AppCompatActivity {
 
-public class SpuntaColloActivity extends AppCompatActivity {
-
-    SpuntaColloBinding binding;
+    TrovaCaricoBinding binding;
     private SurfaceView surfaceView;
     private BarcodeDetector barcodeDetector;
     private CameraSource cameraSource;
@@ -40,17 +39,11 @@ public class SpuntaColloActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = SpuntaColloBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.spunta_collo);
+        binding = TrovaCaricoBinding.inflate(getLayoutInflater());
+        setContentView(R.layout.trova_carico);
         toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
-        surfaceView = findViewById(R.id.surface_view);
-        barcodeText = findViewById(R.id.barcode_text);
-
-        Intent intent = this.getIntent();
-        int carico = intent.getIntExtra("idcarico", 0);
-        System.out.println(carico);
-        TextView idcarico = findViewById(R.id.idcaricospuntacollo);
-        idcarico.setText(String.valueOf(carico));
+        surfaceView = findViewById(R.id.surface_view_trovacarico);
+        barcodeText = findViewById(R.id.barcode_text_trovacarico);
 
 
         initialiseDetectorsAndSources();
@@ -72,10 +65,10 @@ public class SpuntaColloActivity extends AppCompatActivity {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 try {
-                    if (ActivityCompat.checkSelfPermission(SpuntaColloActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(TrovaCaricoActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                         cameraSource.start(surfaceView.getHolder());
                     } else {
-                        ActivityCompat.requestPermissions(SpuntaColloActivity.this, new
+                        ActivityCompat.requestPermissions(TrovaCaricoActivity.this, new
                                 String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
                     }
 
@@ -148,6 +141,4 @@ public class SpuntaColloActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         initialiseDetectorsAndSources();
     }
-
-
 }

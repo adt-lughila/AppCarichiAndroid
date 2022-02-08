@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,9 +46,12 @@ public class OrdineActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
 
+
         //recupero il codice del carico
         Intent intent = this.getIntent();
         int codice = intent.getIntExtra("codice", 0);
+        TextView idcarico = binding.numerocaricoordini;
+        idcarico.setText(String.valueOf(codice));
 
         init(codice);
 
@@ -82,7 +86,7 @@ public class OrdineActivity extends AppCompatActivity {
                                         righeordine.add(ro);
 
                                     }
-                                    creaListaFinale(righeordine,ordini);
+                                    creaListaFinale(righeordine,ordini,codice);
 
 
                                 }catch(JSONException e){
@@ -102,7 +106,7 @@ public class OrdineActivity extends AppCompatActivity {
 
     }
 
-    public void creaListaFinale(List<Rigaordine> righeordine, List<Ordine> ordini){
+    public void creaListaFinale(List<Rigaordine> righeordine, List<Ordine> ordini, int carico){
         expandableListView = (ExpandableListView) findViewById(R.id.orderlistview);
         HashMap<Ordine, List<Rigaordine>> childData = new HashMap<>();
 
@@ -117,6 +121,7 @@ public class OrdineActivity extends AppCompatActivity {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 //Nothing here ever fires
                 Intent intent = new Intent(OrdineActivity.this, SpuntaColloActivity.class);
+                intent.putExtra("idcarico",carico);
                 startActivity(intent);
                 return true;
             }

@@ -17,6 +17,7 @@ import com.appcarichi.model.Ordine;
 import com.example.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 

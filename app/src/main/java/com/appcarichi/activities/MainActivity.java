@@ -83,6 +83,16 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
+        //trova carico da collo
+        Button trovaCarico=findViewById(R.id.trovaCaricoButton);
+        trovaCarico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(getApplicationContext(),TrovaCaricoActivity.class);
+                startActivity(i);
+            }
+        });
+
 
     }
 

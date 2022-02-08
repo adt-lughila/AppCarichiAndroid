@@ -94,9 +94,6 @@ public class InsertNotaActivity extends Activity {
                     }
                 };
                 requestQueue.add(stringRequest);
-                Intent i = new Intent(InsertNotaActivity.this, InsertNotaActivity.class);
-                i.putExtra("rigaordine", ro);
-                startActivity(i);
                 finish();
             }
         });
