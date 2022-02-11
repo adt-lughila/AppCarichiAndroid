@@ -53,9 +53,9 @@ public class ListAdapter extends ArrayAdapter<Carico> {
         TextView num_sedute = convertView.findViewById(R.id.num_sedute);
         num_sedute.setText(String.valueOf(carico.getNum_sedute()));
 
-        if (carico.getStatoCarico().equals("g")) {
+        if (carico.getStatoCarico().equals("x")) {
             img.setImageResource(R.drawable.yellowcircle);
-        }else if (carico.getStatoCarico().equals("r")) {
+        }else if (carico.getStatoCarico().equals("F")) {
             img.setImageResource(R.drawable.redcircle);
         }else if(carico.getStatoCarico().equals("v")){
             img.setImageResource(R.drawable.greencircle);

@@ -25,134 +25,177 @@
 
 
             <LinearLayout
-                android:layout_width="135dp"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CAMPO 1"
+                    android:text="CODICE ARTICOLO"
                     android:textAlignment="center" />
 
                 <TextView
-                    android:id="@+id/campo1"
+                    android:id="@+id/codicearticolo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CAMPO 1"
+                    android:text="CODICE ARTICOLO"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="135dp"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="MATRICOLA"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/matricola"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="CAMPO 2"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/campo2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CAMPO 2"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="135dp"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CAMPO 3"
+                    android:text="BARCODE"
                     android:textAlignment="center" />
 
                 <TextView
-                    android:id="@+id/campo3"
+                    android:id="@+id/barcode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="CAMPO 3"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="135dp"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DESCRIZIONE"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/descrizione"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="CAMPO 4"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/campo4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CAMPO 4"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="135dp"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CAMPO 5"
+                    android:text="PEZZI ORDINATI"
                     android:textAlignment="center" />
 
                 <TextView
-                    android:id="@+id/campo5"
+                    android:id="@+id/pezziordinati"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="CAMPO 5"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="135dp"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CAMPO 6"
+                    android:text="PEZZI SPEDITI"
                     android:textAlignment="center" />
 
                 <TextView
-                    android:id="@+id/campo6"
+                    android:id="@+id/pezzispediti"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="CAMPO 6"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="190dp"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SCONTO"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/sconto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CAMPO 7"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PREZZO"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/prezzo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CAMPO 8"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="142dp"
                 android:layout_height="match_parent">
 
                 <ImageButton
@@ -160,7 +203,7 @@
                     android:layout_width="100px"
                     android:layout_height="100px"
                     android:layout_gravity="center"
-                    android:layout_marginStart="80dp"
+                    android:layout_marginStart="17dp"
                     android:layout_marginTop="5dp"
                     android:onClick="insertNota"
                     android:src="@drawable/scrivinota"
@@ -182,21 +225,11 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="85dp"
-            android:layout_height="match_parent">
 
-            <CheckBox
-                android:id="@+id/spunta"
-                android:layout_width="wrap_content"
-                android:layout_height="100px"
-                android:layout_gravity="center"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp" />
-        </LinearLayout>
 
         <Button
-            android:layout_width="110dp"
+            android:id="@+id/spuntabutton"
+            android:layout_width="95dp"
             android:layout_height="100px"
             android:text="SPUNTA"
             android:backgroundTint="#cb504d"

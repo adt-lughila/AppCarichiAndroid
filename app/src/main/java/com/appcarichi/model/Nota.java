@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 public class Nota implements Serializable {
 
-    int idnota,idordine,codicenota;
+    int idnota,idrigaordine,codicenota;
     String descrizione,commento;
 
-    public Nota(int idordine, int codicenota, String descrizione, String commento) {
-        this.idordine = idordine;
+    public Nota(int idrigaordine, int codicenota, String descrizione, String commento) {
+        this.idrigaordine = idrigaordine;
         this.codicenota = codicenota;
         this.descrizione = descrizione;
         this.commento = commento;
     }
 
-    public Nota(int idnota, int idordine, int codicenota, String descrizione, String commento) {
+    public Nota(int idnota, int idrigaordine, int codicenota, String descrizione, String commento) {
         this.idnota=idnota;
-        this.idordine = idordine;
+        this.idrigaordine = idrigaordine;
         this.codicenota = codicenota;
         this.descrizione = descrizione;
         this.commento = commento;
@@ -31,11 +31,11 @@ public class Nota implements Serializable {
     }
 
     public int getIdordine() {
-        return idordine;
+        return idrigaordine;
     }
 
     public void setIdordine(int idordine) {
-        this.idordine = idordine;
+        this.idrigaordine = idordine;
     }
 
     public int getCodicenota() {

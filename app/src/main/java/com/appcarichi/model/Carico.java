@@ -4,10 +4,11 @@ import java.io.Serializable;
 
 public class Carico implements Serializable {
 
-    int codice, tot_colli, colli_censiti, num_sedute;
+    int idcarico, codice, tot_colli, colli_censiti, num_sedute;
     String destinazione, stato_spedizione, statoCarico;
 
-    public Carico(int codice, int tot_colli, int colli_censiti, int num_sedute, String destinazione, String stato_spedizione, String statoCarico) {
+    public Carico(int idcarico, int codice, int tot_colli, int colli_censiti, int num_sedute, String destinazione, String stato_spedizione, String statoCarico) {
+        this.idcarico = idcarico;
         this.codice = codice;
         this.tot_colli = tot_colli;
         this.colli_censiti = colli_censiti;
@@ -16,6 +17,8 @@ public class Carico implements Serializable {
         this.stato_spedizione = stato_spedizione;
         this.statoCarico = statoCarico;
     }
+
+    public int getIdcarico() {return idcarico; }
 
     public int getCodice() {
         return codice;

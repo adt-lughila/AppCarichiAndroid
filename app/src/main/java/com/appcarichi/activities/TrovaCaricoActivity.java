@@ -9,11 +9,23 @@ import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.appcarichi.model.Carico;
 import com.example.appcarichi.R;
 import com.example.appcarichi.databinding.SpuntaColloBinding;
 import com.example.appcarichi.databinding.TrovaCaricoBinding;
@@ -22,7 +34,12 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class TrovaCaricoActivity extends AppCompatActivity {
 
@@ -44,6 +61,58 @@ public class TrovaCaricoActivity extends AppCompatActivity {
         toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
         surfaceView = findViewById(R.id.surface_view_trovacarico);
         barcodeText = findViewById(R.id.barcode_text_trovacarico);
+
+        Button cercaCarico = findViewById(R.id.ricercacarico);
+
+        cercaCarico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText barcodeEditText = findViewById(R.id.editTextTrovaCarico);
+                String barcodeEdited = barcodeEditText.getText().toString();
+                String url = "http://192.168.1.158:8080/resources/carico/"+barcodeEdited;
+
+                RequestQueue queue=Volley.newRequestQueue(TrovaCaricoActivity.this);
+
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject carico=response;
+                            int idcarico=carico.getInt("idCarico");
+                            int codice=carico.getInt("nCarico");
+                            String destinazione=carico.getString("desCarico");
+                            String stato_spedizione=carico.getString("descrStato");
+                            String stato_carico=carico.getString("stato");
+
+                            Carico car=new Carico(idcarico,codice,10,8,
+                                    2,destinazione,stato_spedizione,stato_carico);
+                            Intent i = new Intent(TrovaCaricoActivity.this, OrdineActivity.class);
+                            i.putExtra("idCarico", car.getIdcarico());
+                            i.putExtra("codice", car.getCodice());
+                            i.putExtra("tot_colli", car.getTot_colli());
+                            i.putExtra("colli_censiti", car.getColli_censiti());
+                            i.putExtra("num_sedute", car.getNum_sedute());
+                            i.putExtra("destinazione", car.getDestinazione());
+                            i.putExtra("stato_spedizione", car.getStato_spedizione());
+                            i.putExtra("statoCarico", car.getStatoCarico());
+                            startActivity(i);
+
+                        }catch(JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                },new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "Nessun carico trovato", Toast.LENGTH_SHORT).show();
+                    }
+                    });
+                queue.add(request);
+
+            }
+        });
 
 
         initialiseDetectorsAndSources();

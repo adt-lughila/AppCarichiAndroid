@@ -63,7 +63,7 @@ public class InsertNotaActivity extends Activity {
                 System.out.println(codicenota);
 
                 Nota n = new Nota(ro.getIdrigarodine(), codicenota, tipo, commento);
-                String url = "http://192.168.1.158:8080/restCarichi/appCarichi/addnota";
+                String url = "http://192.168.1.158:8080/resources/addnota";
                 RequestQueue requestQueue = Volley.newRequestQueue(InsertNotaActivity.this);
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

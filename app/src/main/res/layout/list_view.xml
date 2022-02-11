@@ -42,7 +42,7 @@
                         android:layout_height="40dp"
                         android:layout_marginStart="45dp"
                         android:layout_marginTop="5dp"
-                        android:src="@drawable/greencircle" />
+                        android:src="@drawable/redcircle" />
                 </LinearLayout>
 
 

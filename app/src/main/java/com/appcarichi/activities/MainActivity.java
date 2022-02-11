@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity  {
 
         ListView listview=findViewById(R.id.listview);
 
-        String url="http://192.168.1.158:8080/restCarichi/appCarichi/carichi";
+        String url="http://192.168.1.158:8080/resources/carichiAll";
 
         ArrayList<Carico> carichi=new ArrayList<>();
         RequestQueue queue=Volley.newRequestQueue(this);
@@ -121,16 +121,14 @@ public class MainActivity extends AppCompatActivity  {
                         try {
                             for(int i=0; i<response.length(); i++){
                                 JSONObject carico=response.getJSONObject(i);
-                                int codice=carico.getInt("codice");
-                                int tot_colli=carico.getInt("tot_colli");
-                                int colli_censiti=carico.getInt("colli_censiti");
-                                int num_sedute=carico.getInt("num_sedute");
-                                String destinazione=carico.getString("destinazione");
-                                String stato_spedizione=carico.getString("stato_spedizione");
-                                String stato_carico=carico.getString("stato_carico");
+                                int idcarico=carico.getInt("idCarico");
+                                int codice=carico.getInt("nCarico");
+                                String destinazione=carico.getString("desCarico");
+                                String stato_spedizione=carico.getString("descrStato");
+                                String stato_carico=carico.getString("stato");
 
-                                Carico car=new Carico(codice,tot_colli,colli_censiti,
-                                        num_sedute,destinazione,stato_spedizione,stato_carico);
+                                Carico car=new Carico(idcarico,codice,10,8,
+                                        2,destinazione,stato_spedizione,stato_carico);
                                 carichi.add(car);
                             }
 
@@ -144,6 +142,7 @@ public class MainActivity extends AppCompatActivity  {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     Intent i = new Intent(MainActivity.this, OrdineActivity.class);
+                                    i.putExtra("idCarico", carichi.get(position).getIdcarico());
                                     i.putExtra("codice", carichi.get(position).getCodice());
                                     i.putExtra("tot_colli", carichi.get(position).getTot_colli());
                                     i.putExtra("colli_censiti", carichi.get(position).getColli_censiti());

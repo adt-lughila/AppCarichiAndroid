@@ -42,7 +42,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextTrovaCarico"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/insertcodetext"
@@ -53,6 +53,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
+        android:id="@+id/ricercacarico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="676dp"

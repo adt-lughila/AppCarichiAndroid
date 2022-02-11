@@ -1,28 +1,20 @@
 package com.appcarichi.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class Rigaordine implements Serializable {
 
     int idrigarodine;
-    String campo1;
-    String campo2;
-    String campo3;
-    String campo4;
-    String campo5;
-    String campo6;
+    String codiceArticolo;
+    String matricola;
+    String barcode;
+    String descrizione;
+    BigDecimal pezziordinati;
+    BigDecimal pezzispediti;
+    BigDecimal sconto;
+    BigDecimal prezzo;
     int idordine;
-
-    public Rigaordine(int idrigarodine, String campo1, String campo2, String campo3, String campo4, String campo5, String campo6, int idordine) {
-        this.idrigarodine = idrigarodine;
-        this.campo1 = campo1;
-        this.campo2 = campo2;
-        this.campo3 = campo3;
-        this.campo4 = campo4;
-        this.campo5 = campo5;
-        this.campo6 = campo6;
-        this.idordine = idordine;
-    }
 
     public int getIdrigarodine() {
         return idrigarodine;
@@ -32,52 +24,68 @@ public class Rigaordine implements Serializable {
         this.idrigarodine = idrigarodine;
     }
 
-    public String getCampo1() {
-        return campo1;
+    public String getCodiceArticolo() {
+        return codiceArticolo;
     }
 
-    public void setCampo1(String campo1) {
-        this.campo1 = campo1;
+    public void setCodiceArticolo(String codiceArticolo) {
+        this.codiceArticolo = codiceArticolo;
     }
 
-    public String getCampo2() {
-        return campo2;
+    public String getMatricola() {
+        return matricola;
     }
 
-    public void setCampo2(String campo2) {
-        this.campo2 = campo2;
+    public void setMatricola(String matricola) {
+        this.matricola = matricola;
     }
 
-    public String getCampo3() {
-        return campo3;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setCampo3(String campo3) {
-        this.campo3 = campo3;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
-    public String getCampo4() {
-        return campo4;
+    public String getDescrizione() {
+        return descrizione;
     }
 
-    public void setCampo4(String campo4) {
-        this.campo4 = campo4;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
-    public String getCampo5() {
-        return campo5;
+    public BigDecimal getPezziordinati() {
+        return pezziordinati;
     }
 
-    public void setCampo5(String campo5) {
-        this.campo5 = campo5;
+    public void setPezziordinati(BigDecimal pezziordinati) {
+        this.pezziordinati = pezziordinati;
     }
 
-    public String getCampo6() {
-        return campo6;
+    public BigDecimal getPezzispediti() {
+        return pezzispediti;
     }
 
-    public void setCampo6(String campo6) {
-        this.campo6 = campo6;
+    public void setPezzispediti(BigDecimal pezzispediti) {
+        this.pezzispediti = pezzispediti;
+    }
+
+    public BigDecimal getSconto() {
+        return sconto;
+    }
+
+    public void setSconto(BigDecimal sconto) {
+        this.sconto = sconto;
+    }
+
+    public BigDecimal getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(BigDecimal prezzo) {
+        this.prezzo = prezzo;
     }
 
     public int getIdordine() {
@@ -87,4 +95,22 @@ public class Rigaordine implements Serializable {
     public void setIdordine(int idordine) {
         this.idordine = idordine;
     }
+
+    public Rigaordine(int idrigarodine, String codiceArticolo, String matricola, String barcode, String descrizione,
+                      BigDecimal pezziordinati, BigDecimal pezzispediti, BigDecimal sconto, BigDecimal prezzo, int idordine) {
+        this.idrigarodine = idrigarodine;
+        this.codiceArticolo = codiceArticolo;
+        this.matricola = matricola;
+        this.barcode = barcode;
+        this.descrizione = descrizione;
+        this.pezziordinati = pezziordinati;
+        this.pezzispediti = pezzispediti;
+        this.sconto = sconto;
+        this.prezzo = prezzo;
+        this.idordine = idordine;
+    }
+
+
+
+
 }

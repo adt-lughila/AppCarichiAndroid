@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class Ordine implements Serializable {
     int idordine,idcarico,tot_colli,colli_consegnati;
-    String fornitore,matricola,barcode,luogo_consegna;
+    String fornitore,cliente,tipoordine,luogo_consegna;
 
-    public Ordine(int idordine, int idcarico, int tot_colli, int colli_consegnati, String fornitore, String matricola, String barcode, String luogo_consegna) {
+    public Ordine(int idordine, int idcarico, int tot_colli, int colli_consegnati, String fornitore, String cliente, String tipoordine, String luogo_consegna) {
         this.idordine = idordine;
         this.idcarico = idcarico;
         this.tot_colli = tot_colli;
         this.colli_consegnati = colli_consegnati;
         this.fornitore = fornitore;
-        this.matricola = matricola;
-        this.barcode = barcode;
+        this.cliente = cliente;
+        this.tipoordine = tipoordine;
         this.luogo_consegna = luogo_consegna;
     }
 
@@ -57,20 +57,14 @@ public class Ordine implements Serializable {
         this.fornitore = fornitore;
     }
 
-    public String getMatricola() {
-        return matricola;
+    public String getCliente() { return cliente; }
+
+    public String getTipoOrdine() {
+        return tipoordine;
     }
 
-    public void setMatricola(String matricola) {
-        this.matricola = matricola;
-    }
-
-    public String getBarcode() {
-        return barcode;
-    }
-
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
+    public void setTipoOrdine(String tipoordine) {
+        this.tipoordine = tipoordine;
     }
 
     public String getLuogo_consegna() {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import com.appcarichi.activities.InsertNotaActivity;
 import com.appcarichi.activities.CheckNoteActivity;
+import com.appcarichi.activities.OrdineActivity;
+import com.appcarichi.activities.SpuntaColloActivity;
 import com.appcarichi.model.Ordine;
 import com.example.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
@@ -81,10 +84,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
         TextView fornitore = convertView.findViewById(R.id.fornitore);
         fornitore.setText(ordine.getFornitore());
-        TextView matricola = convertView.findViewById(R.id.matricola);
-        matricola.setText(ordine.getMatricola());
-        TextView barcode = convertView.findViewById(R.id.barcode);
-        barcode.setText(ordine.getBarcode());
+        TextView cliente = convertView.findViewById(R.id.cliente);
+        cliente.setText(ordine.getCliente());
+        TextView tipoordine = convertView.findViewById(R.id.tipoordine);
+        tipoordine.setText(ordine.getTipoOrdine());
         TextView luogo_consegna_ordine = convertView.findViewById(R.id.luogo_consegna_ordine);
         luogo_consegna_ordine.setText(ordine.getLuogo_consegna());
         TextView tot_colli_ordine = convertView.findViewById(R.id.tot_colli_ordine);
@@ -100,28 +103,33 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView listChildItemText;
         Rigaordine ro = (Rigaordine) mListChildData.get(mListData.get(i)).get(i1);
+        Ordine ordine = mListData.get(i);
 
         if(convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.righe_ordine, null);
         }
-        TextView campo1 = convertView.findViewById(R.id.campo1);
-        campo1.setText(ro.getCampo1());
-        TextView campo2 = convertView.findViewById(R.id.campo2);
-        campo2.setText(ro.getCampo2());
-        TextView campo3 = convertView.findViewById(R.id.campo3);
-        campo3.setText(ro.getCampo3());
-        TextView campo4 = convertView.findViewById(R.id.campo4);
-        campo4.setText(ro.getCampo4());
-        TextView campo5 = convertView.findViewById(R.id.campo5);
-        campo5.setText(ro.getCampo5());
-        TextView campo6 = convertView.findViewById(R.id.campo6);
-        campo6.setText(ro.getCampo6());
+        TextView codiceArticolo = convertView.findViewById(R.id.codicearticolo);
+        codiceArticolo.setText(ro.getCodiceArticolo());
+        TextView matricola = convertView.findViewById(R.id.matricola);
+        matricola.setText(ro.getMatricola());
+        TextView barcode = convertView.findViewById(R.id.barcode);
+        barcode.setText(ro.getBarcode());
+        TextView descrizione = convertView.findViewById(R.id.descrizione);
+        descrizione.setText(ro.getDescrizione());
+        TextView pezziordinati = convertView.findViewById(R.id.pezziordinati);
+        pezziordinati.setText(String.valueOf(ro.getPezziordinati()));
+        TextView pezzispediti = convertView.findViewById(R.id.pezzispediti);
+        pezzispediti.setText(String.valueOf(ro.getPezzispediti()));
+        TextView sconto = convertView.findViewById(R.id.sconto);
+        sconto.setText(String.valueOf(ro.getSconto()));
+        TextView prezzo = convertView.findViewById(R.id.prezzo);
+        prezzo.setText(String.valueOf(ro.getPrezzo()));
         ImageButton insertnote = convertView.findViewById(R.id.insertnota);
         ImageButton checknote = convertView.findViewById(R.id.checknote);
+        Button spunta = convertView.findViewById(R.id.spuntabutton);
         insertnote.setTag(ro);
         checknote.setTag(ro);
-        CheckBox spunta = convertView.findViewById(R.id.spunta);
 
         insertnote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +152,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 mContext.startActivity(intent);
             }
         });
+
+        spunta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, SpuntaColloActivity.class);
+                intent.putExtra("idcarico",ordine.getIdcarico());
+                mContext.startActivity(intent);
+            }
+        });
+
 
         return convertView;
     }
