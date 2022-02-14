@@ -26,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 
 import com.appcarichi.model.Carico;
 import com.appcarichi.adapters.ListAdapter;
+import com.appcarichi.utils.Utils;
 import com.example.appcarichi.R;
 import com.example.appcarichi.databinding.ActivityMainBinding;
 
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity  {
 
         ListView listview=findViewById(R.id.listview);
 
-        String url="http://192.168.1.158:8080/resources/carichi";
+        String url= Utils.URL_BE+"/carichi";
 
         ArrayList<Carico> carichi=new ArrayList<>();
         RequestQueue queue=Volley.newRequestQueue(this);

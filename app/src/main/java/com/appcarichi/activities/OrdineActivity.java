@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.adapters.ExpandableListAdapter;
 import com.appcarichi.model.Ordine;
+import com.appcarichi.utils.Utils;
 import com.example.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
 import com.example.appcarichi.databinding.ActivityOrdineBinding;
@@ -66,7 +67,7 @@ public class OrdineActivity extends AppCompatActivity {
         getGroupData(codice,new VolleyCallback() {
             @Override
             public void onSuccess(ArrayList<Ordine> ordini) {
-                String url = "http://192.168.1.158:8080/resources/righeordine";
+                String url = Utils.URL_BE+"/righeordine";
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 List<Rigaordine> righeordine=new ArrayList<>();
                 JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -147,7 +148,7 @@ public class OrdineActivity extends AppCompatActivity {
 
     public void getGroupData(int idcarico, final VolleyCallback callBack){
         final ArrayList<Ordine> groupData = new ArrayList<>();
-        String url="http://192.168.1.158:8080/resources/ordine-id-carico?idCarico=84";
+        String url=Utils.URL_BE+"/ordine-id-carico?idCarico=84";
         RequestQueue queue= Volley.newRequestQueue(this);
         JsonArrayRequest request=new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>(){

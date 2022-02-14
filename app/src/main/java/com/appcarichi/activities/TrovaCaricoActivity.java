@@ -26,6 +26,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.model.Carico;
+import com.appcarichi.utils.Utils;
 import com.example.appcarichi.R;
 import com.example.appcarichi.databinding.SpuntaColloBinding;
 import com.example.appcarichi.databinding.TrovaCaricoBinding;
@@ -69,7 +70,7 @@ public class TrovaCaricoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText barcodeEditText = findViewById(R.id.editTextTrovaCarico);
                 String barcodeEdited = barcodeEditText.getText().toString();
-                String url = "http://192.168.1.158:8080/resources/carico/"+barcodeEdited;
+                String url = Utils.URL_BE+"/carico/"+barcodeEdited;
 
                 RequestQueue queue=Volley.newRequestQueue(TrovaCaricoActivity.this);
 

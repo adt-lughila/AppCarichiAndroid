@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.model.User;
+import com.appcarichi.utils.Utils;
 import com.example.appcarichi.R;
 import com.example.appcarichi.databinding.LoginBinding;
 import com.google.gson.JsonObject;
@@ -58,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 String utente_str = utente.getText().toString();
                 String password_str = password.getText().toString();
                 RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-                String url = "http://192.168.1.158:8080/resources/login";
+                String url = Utils.URL_BE+"/login";
 
                 JSONObject postData = new JSONObject();
                 try {

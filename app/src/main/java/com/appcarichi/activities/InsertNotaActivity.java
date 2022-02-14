@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.model.Nota;
+import com.appcarichi.utils.Utils;
 import com.example.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
 import com.example.appcarichi.databinding.ActivityInsertNotaBinding;
@@ -63,7 +64,7 @@ public class InsertNotaActivity extends Activity {
                 System.out.println(codicenota);
 
                 Nota n = new Nota(ro.getIdrigarodine(), codicenota, tipo, commento);
-                String url = "http://192.168.1.158:8080/resources/addnota";
+                String url = Utils.URL_BE+"/addnota";
                 RequestQueue requestQueue = Volley.newRequestQueue(InsertNotaActivity.this);
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
