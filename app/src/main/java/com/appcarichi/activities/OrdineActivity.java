@@ -147,19 +147,19 @@ public class OrdineActivity extends AppCompatActivity {
 
     public void getGroupData(int idcarico, final VolleyCallback callBack){
         final ArrayList<Ordine> groupData = new ArrayList<>();
-        String url="http://192.168.1.158:8080/resources/ordini/"+idcarico;
+        String url="http://192.168.1.158:8080/resources/ordine-id-carico?idCarico=84";
         RequestQueue queue= Volley.newRequestQueue(this);
         JsonArrayRequest request=new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>(){
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            for (int i = 0; i < response.length(); i++) {
+                            for (int i = 0; i < 2; i++) {
                                 JSONObject ordine = response.getJSONObject(i);
-                                int idordine=ordine.getInt("idOrdine");
-                                String fornitore=ordine.getString("ragSocFornit");
-                                String cliente=ordine.getString("cliente");
-                                String tipoordine=ordine.getString("tipoOrd");
+                                int idordine=2;
+                                String fornitore="prova";
+                                String cliente="prova";
+                                String tipoordine="test";
 
                                 Ordine o=new Ordine(idordine,idcarico,10,7,fornitore,cliente,tipoordine,"TO");
                                 groupData.add(o);

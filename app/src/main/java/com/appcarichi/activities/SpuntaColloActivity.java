@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.vision.CameraSource;
@@ -51,6 +52,8 @@ public class SpuntaColloActivity extends AppCompatActivity {
         System.out.println(carico);
         TextView idcarico = findViewById(R.id.idcaricospuntacollo);
         idcarico.setText(String.valueOf(carico));
+
+        Button confermaSpunta = findViewById(R.id.confermaspunta);
 
 
         initialiseDetectorsAndSources();

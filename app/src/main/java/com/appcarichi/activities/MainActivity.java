@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity  {
 
         ListView listview=findViewById(R.id.listview);
 
-        String url="http://192.168.1.158:8080/resources/carichiAll";
+        String url="http://192.168.1.158:8080/resources/carichi";
 
         ArrayList<Carico> carichi=new ArrayList<>();
         RequestQueue queue=Volley.newRequestQueue(this);

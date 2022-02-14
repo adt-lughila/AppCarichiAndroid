@@ -158,6 +158,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, SpuntaColloActivity.class);
                 intent.putExtra("idcarico",ordine.getIdcarico());
+                intent.putExtra("rigaordine", ro);
                 mContext.startActivity(intent);
             }
         });
