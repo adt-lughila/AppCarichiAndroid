@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.adapters.ExpandableListAdapter;
 import com.appcarichi.model.Ordine;
@@ -67,16 +68,16 @@ public class OrdineActivity extends AppCompatActivity {
         getGroupData(codice,new VolleyCallback() {
             @Override
             public void onSuccess(ArrayList<Ordine> ordini) {
-                String url = Utils.URL_BE+"/righeordine";
+                String url = Utils.URL_BE+"/riga-ordine-id-carico";
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 List<Rigaordine> righeordine=new ArrayList<>();
-                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
-                        new Response.Listener<JSONArray>() {
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
                             @Override
-                            public void onResponse(JSONArray response) {
+                            public void onResponse(JSONObject response) {
                                 try{
                                     for(int i=0; i<response.length(); i++){
-                                        JSONObject rigaordine = response.getJSONObject(i);
+                                        JSONObject rigaordine = response;
                                         JSONObject ordine = rigaordine.getJSONObject("ordine");
                                         int idrigaordine=rigaordine.getInt("idRigaOrdine");
                                         String codicearticolo=rigaordine.getString("codArt");
@@ -107,7 +108,16 @@ public class OrdineActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
 
                     }
-                });
+                })
+                {
+                    @Override
+                    protected Map<String, String> getParams()
+                    {
+                        Map<String, String>  params = new HashMap<String, String>();
+                        params.put("idCarico", String.valueOf(codice));
+
+                        return params;
+                    } };
                 queue.add(request);
             }
         });
@@ -148,15 +158,15 @@ public class OrdineActivity extends AppCompatActivity {
 
     public void getGroupData(int idcarico, final VolleyCallback callBack){
         final ArrayList<Ordine> groupData = new ArrayList<>();
-        String url=Utils.URL_BE+"/ordine-id-carico?idCarico=84";
+        String url=Utils.URL_BE+"/ordine-id-carico";
         RequestQueue queue= Volley.newRequestQueue(this);
-        JsonArrayRequest request=new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>(){
+        JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>(){
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         try {
                             for (int i = 0; i < 2; i++) {
-                                JSONObject ordine = response.getJSONObject(i);
+                                JSONObject ordine = response;
                                 int idordine=2;
                                 String fornitore="prova";
                                 String cliente="prova";
@@ -167,7 +177,7 @@ public class OrdineActivity extends AppCompatActivity {
                             }
                             callBack.onSuccess(groupData);
                         }
-                        catch (JSONException e) {
+                        catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -176,7 +186,28 @@ public class OrdineActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        });
+        })
+
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("idCarico", String.valueOf(idcarico));
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Accept", "application/x-www-form-urlencoded; charset=UTF-8");
+                headers.put("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+                return headers;
+            }
+
+        }
+            ;
         queue.add(request);
     }
 
