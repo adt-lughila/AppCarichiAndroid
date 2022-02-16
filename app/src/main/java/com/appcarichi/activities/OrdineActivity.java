@@ -68,7 +68,7 @@ public class OrdineActivity extends AppCompatActivity {
         getGroupData(codice,new VolleyCallback() {
             @Override
             public void onSuccess(ArrayList<Ordine> ordini) {
-                String url = Utils.URL_BE+"/righeordine";
+                String url = Utils.URL_BE+"/riga-ordine-id-carico?idCarico="+codice;
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 List<Rigaordine> righeordine=new ArrayList<>();
                 JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -149,19 +149,19 @@ public class OrdineActivity extends AppCompatActivity {
 
     public void getGroupData(int idcarico, final VolleyCallback callBack){
         final ArrayList<Ordine> groupData = new ArrayList<>();
-        String url=Utils.URL_BE+"/ordine-id-carico?idCarico=84";
+        String url=Utils.URL_BE+"/ordine-id-carico?idCarico="+idcarico;
         RequestQueue queue= Volley.newRequestQueue(this);
         JsonArrayRequest request=new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>(){
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            for (int i = 0; i < 2; i++) {
+                            for (int i = 0; i < response.length(); i++) {
                                 JSONObject ordine = response.getJSONObject(i);
-                                int idordine=2;
-                                String fornitore="prova";
-                                String cliente="prova";
-                                String tipoordine="test";
+                                int idordine=ordine.getInt("idOrdine");
+                                String fornitore=ordine.getString("ragSocFornit");
+                                String cliente=ordine.getString("cliente");
+                                String tipoordine=ordine.getString("tipoOrd");
 
                                 Ordine o=new Ordine(idordine,idcarico,10,7,fornitore,cliente,tipoordine,"TO");
                                 groupData.add(o);

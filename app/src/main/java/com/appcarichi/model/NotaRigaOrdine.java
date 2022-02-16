@@ -5,29 +5,22 @@ import java.io.Serializable;
 public class NotaRigaOrdine implements Serializable {
 
         int idNotaRigaOrdine;
-        int idRigaOrdine;
         Rigaordine ro;
         Nota nota;
         String utente,commento;
 
-    public NotaRigaOrdine(int idRigaOrdine, Rigaordine ro, Nota nota, String commento) {
-        this.idRigaOrdine = idRigaOrdine;
+    public NotaRigaOrdine(int idNotaRigaOrdine, Rigaordine ro, Nota nota, String commento, String utente) {
+        this.idNotaRigaOrdine = idNotaRigaOrdine;
         this.ro = ro;
         this.nota = nota;
         this.commento = commento;
+        this.utente = utente;
     }
 
     public int getIdNotaRigaOrdine(){
         return idNotaRigaOrdine;
     }
 
-    public int getIdRigaOrdine() {
-        return idRigaOrdine;
-    }
-
-    public void setIdRigaOrdine(int idRigaOrdine) {
-        this.idRigaOrdine = idRigaOrdine;
-    }
 
     public Rigaordine getRo() {
         return ro;

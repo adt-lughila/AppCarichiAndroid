@@ -75,16 +75,14 @@ public class CheckNoteActivity extends Activity {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject notaRigaOrdine = response.getJSONObject(i);
                                 JSONObject nota = notaRigaOrdine.getJSONObject("nota");
-                                JSONObject rigaordine = notaRigaOrdine.getJSONObject("rigaOrdine");
-                                int idnota = nota.getInt("idNota");
                                 int codicenota = nota.getInt("codiceNota");
                                 String descrizione = nota.getString("descrizioneNota");
-                                int idrigaordine=rigaordine.getInt("idRigaOrdine");
+                                int idNotaRigaOrdine=notaRigaOrdine.getInt("idNotaRigaOrdine");
                                 String utente=notaRigaOrdine.getString("utente");
                                 String commento=notaRigaOrdine.getString("commento");
 
                                 Nota n = new Nota(codicenota,descrizione);
-                                NotaRigaOrdine nro=new NotaRigaOrdine(idrigaordine,null,n,commento);
+                                NotaRigaOrdine nro=new NotaRigaOrdine(idNotaRigaOrdine,null,n,commento,utente);
                                 note.add(nro);
 
                                 NoteListAdapter noteListAdapter = new NoteListAdapter(CheckNoteActivity.this,note);
@@ -106,13 +104,13 @@ public class CheckNoteActivity extends Activity {
                                             if (checkbox.isChecked()) {
                                                 NotaRigaOrdine notaRO = (NotaRigaOrdine) notelistview.getAdapter().getItem(i);
 
-                                                String url2 = Utils.URL_BE+"/delete-nota-riga-ordine?idNotaRigaOrdine=26";
+                                                String url2 = Utils.URL_BE+"/delete-nota-riga-ordine?idNotaRigaOrdine="+notaRO.getIdNotaRigaOrdine();
                                                 RequestQueue queue2 = Volley.newRequestQueue(CheckNoteActivity.this);
 
-                                                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url2, null,
-                                                        new Response.Listener<JSONObject>() {
+                                                StringRequest request = new StringRequest(Request.Method.POST, url2,
+                                                        new Response.Listener<String>() {
                                                             @Override
-                                                            public void onResponse(JSONObject response) {
+                                                            public void onResponse(String response) {
                                                                 Intent i = new Intent(CheckNoteActivity.this, CheckNoteActivity.class);
                                                                 i.putExtra("rigaordine", ro);
                                                                 startActivity(i);
@@ -122,7 +120,7 @@ public class CheckNoteActivity extends Activity {
                                                         new Response.ErrorListener() {
                                                             @Override
                                                             public void onErrorResponse(VolleyError error) {
-
+                                                                Log.i("sono in errore","sono in errore");
                                                             }
 
                                                         });
