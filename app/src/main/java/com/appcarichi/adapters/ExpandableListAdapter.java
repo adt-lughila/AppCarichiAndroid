@@ -122,7 +122,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView pezzispediti = convertView.findViewById(R.id.pezzispediti);
         pezzispediti.setText(String.valueOf(ro.getPezzispediti()));
         TextView sconto = convertView.findViewById(R.id.sconto);
-        sconto.setText(String.valueOf(ro.getSconto()));
+        if(String.valueOf(ro.getSconto()).equals("null")){
+            sconto.setText(" ");
+        }else {
+            sconto.setText(String.valueOf(ro.getSconto()));
+        }
         TextView prezzo = convertView.findViewById(R.id.prezzo);
         prezzo.setText(String.valueOf(ro.getPrezzo()));
         ImageButton insertnote = convertView.findViewById(R.id.insertnota);

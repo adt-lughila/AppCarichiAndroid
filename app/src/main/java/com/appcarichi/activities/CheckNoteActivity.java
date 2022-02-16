@@ -26,7 +26,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.adapters.NoteListAdapter;
 import com.appcarichi.model.Nota;
+import com.appcarichi.model.NotaRigaOrdine;
 import com.appcarichi.model.Rigaordine;
+import com.appcarichi.utils.Utils;
 import com.example.appcarichi.R;
 import com.example.appcarichi.databinding.ActivityVisualizzaNoteBinding;
 
@@ -61,8 +63,8 @@ public class CheckNoteActivity extends Activity {
         Rigaordine ro = (Rigaordine) intent.getSerializableExtra("rigaordine");
         int idrigaordine = ro.getIdrigarodine();
 
-        String url="http://192.168.1.158:8080/restCarichi/appCarichi/note/"+idrigaordine;
-        ArrayList<Nota> note=new ArrayList<>();
+        String url= Utils.URL_BE+"/nota-riga-ordine?idRigaOrdine="+idrigaordine;
+        ArrayList<NotaRigaOrdine> note=new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(this);
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -71,15 +73,19 @@ public class CheckNoteActivity extends Activity {
                     public void onResponse(JSONArray response) {
                         try {
                             for (int i = 0; i < response.length(); i++) {
-                                JSONObject nota = response.getJSONObject(i);
-                                int idnota=nota.getInt("idnota");
-                                int idrigaordine=nota.getInt("idrigaordine");
-                                int codicenota=nota.getInt("codicenota");
-                                String descrizione=nota.getString("descrizione");
-                                String commento=nota.getString("commento");
+                                JSONObject notaRigaOrdine = response.getJSONObject(i);
+                                JSONObject nota = notaRigaOrdine.getJSONObject("nota");
+                                JSONObject rigaordine = notaRigaOrdine.getJSONObject("rigaOrdine");
+                                int idnota = nota.getInt("idNota");
+                                int codicenota = nota.getInt("codiceNota");
+                                String descrizione = nota.getString("descrizioneNota");
+                                int idrigaordine=rigaordine.getInt("idRigaOrdine");
+                                String utente=notaRigaOrdine.getString("utente");
+                                String commento=notaRigaOrdine.getString("commento");
 
-                                Nota n=new Nota(idnota,idrigaordine,codicenota,descrizione,commento);
-                                note.add(n);
+                                Nota n = new Nota(codicenota,descrizione);
+                                NotaRigaOrdine nro=new NotaRigaOrdine(idrigaordine,null,n,commento);
+                                note.add(nro);
 
                                 NoteListAdapter noteListAdapter = new NoteListAdapter(CheckNoteActivity.this,note);
                                 binding.notelistview.setAdapter(noteListAdapter);
@@ -98,11 +104,12 @@ public class CheckNoteActivity extends Activity {
                                             linearLayout = (LinearLayout) relativeLayout.getChildAt(0);
                                             checkbox = (CheckBox) linearLayout.getChildAt(0);
                                             if (checkbox.isChecked()) {
-                                                Nota nota = (Nota) notelistview.getAdapter().getItem(i);
-                                                int idnota = nota.getIdnota();
-                                                String url2 = "http://192.168.1.158:8080/restCarichi/appCarichi/delnote/" + idnota;
+                                                NotaRigaOrdine notaRO = (NotaRigaOrdine) notelistview.getAdapter().getItem(i);
+
+                                                String url2 = Utils.URL_BE+"/delete-nota-riga-ordine?idNotaRigaOrdine=26";
                                                 RequestQueue queue2 = Volley.newRequestQueue(CheckNoteActivity.this);
-                                                JsonObjectRequest request = new JsonObjectRequest(Request.Method.DELETE, url2, null,
+
+                                                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url2, null,
                                                         new Response.Listener<JSONObject>() {
                                                             @Override
                                                             public void onResponse(JSONObject response) {
@@ -127,7 +134,7 @@ public class CheckNoteActivity extends Activity {
                                     }
                                 }
                             });
-                            modifica.setOnClickListener(new View.OnClickListener() {
+                          /*  modifica.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     RelativeLayout relativeLayout;
@@ -184,7 +191,7 @@ public class CheckNoteActivity extends Activity {
                                         e.printStackTrace();
                                     }
                                 }
-                            });
+                            }); */
 
                         } catch (JSONException e) {
                             e.printStackTrace();

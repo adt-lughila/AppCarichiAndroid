@@ -17,9 +17,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.model.Nota;
+import com.appcarichi.model.NotaRigaOrdine;
 import com.appcarichi.utils.Utils;
 import com.example.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
@@ -58,43 +60,37 @@ public class InsertNotaActivity extends Activity {
 
                 EditText commentonota = (EditText) findViewById(R.id.commentonota);
                 String commento = commentonota.getText().toString();
-                Spinner tiponota = (Spinner) findViewById(R.id.spinnernota);
-                String tipo = tiponota.getSelectedItem().toString();
-                int codicenota=getCodiceNota(tipo);
-                System.out.println(codicenota);
+                Spinner descrizionenota = (Spinner) findViewById(R.id.spinnernota);
+                String descrizione = descrizionenota.getSelectedItem().toString();
+                int codicenota=getCodiceNota(descrizione);
 
-                Nota n = new Nota(ro.getIdrigarodine(), codicenota, tipo, commento);
-                String url = Utils.URL_BE+"/addnota";
+                Nota n = new Nota(codicenota, descrizione);
+
+                String url = Utils.URL_BE+"/inserisci-nota";
                 RequestQueue requestQueue = Volley.newRequestQueue(InsertNotaActivity.this);
+                JSONObject notaRO = new JSONObject();
+                try {
+                    notaRO.put("rigaOrdine", ro);
+                    notaRO.put("nota",n);
+                    notaRO.put("commento",commento);
+                    notaRO.put("utente", "utente");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,notaRO, new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            Toast.makeText(getApplicationContext(), "Nota salvata", Toast.LENGTH_SHORT).show();
+                    public void onResponse(JSONObject response) {
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        Toast.makeText(getApplicationContext(), "Nota salvata", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(getApplicationContext(), "Errore nel salvataggio nota", Toast.LENGTH_SHORT).show();
                     }
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<>();
-                        params.put("idrigaordine", String.valueOf(ro.getIdrigarodine()));
-                        params.put("codicenota", String.valueOf(codicenota));
-                        params.put("descrizione", tipo);
-                        params.put("commento", commento);
-                        return params;
-                    }
-                };
-                requestQueue.add(stringRequest);
+                });
+                requestQueue.add(jsonObjectRequest);
                 finish();
             }
         });

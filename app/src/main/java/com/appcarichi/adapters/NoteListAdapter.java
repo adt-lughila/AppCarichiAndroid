@@ -11,13 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.appcarichi.model.Nota;
+import com.appcarichi.model.NotaRigaOrdine;
 import com.example.appcarichi.R;
 
 import java.util.ArrayList;
 
-public class NoteListAdapter extends ArrayAdapter<Nota> {
+public class NoteListAdapter extends ArrayAdapter<NotaRigaOrdine> {
 
-    public NoteListAdapter(Context context, ArrayList<Nota> noteArrayList){
+    public NoteListAdapter(Context context, ArrayList<NotaRigaOrdine> noteArrayList){
         super(context, R.layout.note_list_view, noteArrayList);
     }
 
@@ -25,16 +26,16 @@ public class NoteListAdapter extends ArrayAdapter<Nota> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        Nota nota = getItem(position);
+        NotaRigaOrdine nota = getItem(position);
 
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.note_list_view,parent,false);
         }
 
         TextView codicenota= convertView.findViewById(R.id.codice_nota);
-        codicenota.setText(String.valueOf(nota.getCodicenota()));
+        codicenota.setText(String.valueOf(nota.getNota().getCodicenota()));
         TextView descrizione= convertView.findViewById(R.id.descrizione);
-        descrizione.setText(nota.getDescrizione());
+        descrizione.setText(nota.getNota().getDescrizione());
         TextView commento= convertView.findViewById(R.id.commento);
         commento.setText(nota.getCommento());
 

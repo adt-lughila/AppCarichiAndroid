@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -62,14 +63,15 @@ public class OrdineActivity extends AppCompatActivity {
 
     }
 
-    public void init(int codice) {
+    public void init(int idcarico) {
+
         expandableListView = (ExpandableListView) findViewById(R.id.orderlistview);
-        getGroupData(codice,new VolleyCallback() {
+        getGroupData(idcarico,new VolleyCallback() {
             @Override
             public void onSuccess(ArrayList<Ordine> ordini) {
-                String url = Utils.URL_BE+"/righeordine";
-                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 List<Rigaordine> righeordine=new ArrayList<>();
+                String url = Utils.URL_BE+"/riga-ordine-id-carico?idCarico="+idcarico;
+                RequestQueue queue = Volley.newRequestQueue(OrdineActivity.this);
                 JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                         new Response.Listener<JSONArray>() {
                             @Override
@@ -85,7 +87,10 @@ public class OrdineActivity extends AppCompatActivity {
                                         String descrizione=rigaordine.getString("descArt");
                                         BigDecimal pezziordinati=BigDecimal.valueOf(rigaordine.getInt("qtaOrdinata"));
                                         BigDecimal pezzispediti=BigDecimal.valueOf(rigaordine.getInt("qtaSpedita"));
-                                        BigDecimal sconto=BigDecimal.valueOf(6);
+                                        BigDecimal sconto = null;
+                                        if(!rigaordine.getString("sconto").equals("null")) {
+                                            sconto=BigDecimal.valueOf(rigaordine.getInt("sconto"));
+                                        }
                                         BigDecimal prezzo=BigDecimal.valueOf(rigaordine.getInt("prezzo"));
                                         int idordine=Integer.valueOf(ordine.getInt("idOrdine"));
 
@@ -94,8 +99,7 @@ public class OrdineActivity extends AppCompatActivity {
                                         righeordine.add(ro);
 
                                     }
-                                    creaListaFinale(righeordine,ordini,codice);
-
+                                    creaListaFinale(righeordine,ordini,idcarico);
 
                                 }catch(JSONException e){
                                     e.printStackTrace();
@@ -105,9 +109,10 @@ public class OrdineActivity extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        error.printStackTrace();
                     }
                 });
+                request.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, 1.0f));
                 queue.add(request);
             }
         });
@@ -148,19 +153,19 @@ public class OrdineActivity extends AppCompatActivity {
 
     public void getGroupData(int idcarico, final VolleyCallback callBack){
         final ArrayList<Ordine> groupData = new ArrayList<>();
-        String url=Utils.URL_BE+"/ordine-id-carico?idCarico=84";
+        String url=Utils.URL_BE+"/ordine-id-carico?idCarico="+idcarico;
         RequestQueue queue= Volley.newRequestQueue(this);
         JsonArrayRequest request=new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>(){
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            for (int i = 0; i < 2; i++) {
+                            for (int i = 0; i < response.length(); i++) {
                                 JSONObject ordine = response.getJSONObject(i);
-                                int idordine=2;
-                                String fornitore="prova";
-                                String cliente="prova";
-                                String tipoordine="test";
+                                int idordine=ordine.getInt("idOrdine");
+                                String fornitore=ordine.getString("ragSocFornit");
+                                String cliente=ordine.getString("cliente");
+                                String tipoordine=ordine.getString("tipoOrd");
 
                                 Ordine o=new Ordine(idordine,idcarico,10,7,fornitore,cliente,tipoordine,"TO");
                                 groupData.add(o);
@@ -179,5 +184,4 @@ public class OrdineActivity extends AppCompatActivity {
         });
         queue.add(request);
     }
-
 }
