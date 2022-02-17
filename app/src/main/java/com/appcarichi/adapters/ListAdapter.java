@@ -1,10 +1,12 @@
 package com.appcarichi.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,8 +14,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.appcarichi.activities.MainActivity;
+import com.appcarichi.activities.OrdineActivity;
 import com.appcarichi.model.Carico;
+import com.appcarichi.model.FlagCarico;
+import com.appcarichi.utils.Utils;
 import com.example.appcarichi.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -53,6 +70,8 @@ public class ListAdapter extends ArrayAdapter<Carico> {
         TextView num_sedute = convertView.findViewById(R.id.num_sedute);
         num_sedute.setText(String.valueOf(carico.getNum_sedute()));
 
+
+
         if (carico.getStatoCarico().equals("x")) {
             img.setImageResource(R.drawable.yellowcircle);
         }else if (carico.getStatoCarico().equals("F")) {
@@ -62,5 +81,23 @@ public class ListAdapter extends ArrayAdapter<Carico> {
         }
 
         return convertView;
+    }
+
+    public void flag(int idcarico){
+        RequestQueue queue= Volley.newRequestQueue(getContext());
+        String url = Utils.URL_BE+"/flag-carico?idCarico="+idcarico;
+        JsonArrayRequest request=new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>(){
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        queue.add(request);
     }
 }

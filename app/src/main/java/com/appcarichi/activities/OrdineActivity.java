@@ -89,9 +89,11 @@ public class OrdineActivity extends AppCompatActivity {
                                         BigDecimal sconto=BigDecimal.valueOf(6);
                                         BigDecimal prezzo=BigDecimal.valueOf(rigaordine.getInt("prezzo"));
                                         int idordine=Integer.valueOf(ordine.getInt("idOrdine"));
+                                        int nroColli=Integer.valueOf(rigaordine.getInt("nroColli"));
+                                        int colliSpuntati=Integer.valueOf(rigaordine.getInt("colliSpuntati"));
 
                                         Rigaordine ro = new Rigaordine(idrigaordine,codicearticolo,
-                                                matricola,barcode,descrizione,pezziordinati,pezzispediti,sconto,prezzo,idordine);
+                                                matricola,barcode,descrizione,pezziordinati,pezzispediti,sconto,prezzo,idordine,nroColli,colliSpuntati);
                                         righeordine.add(ro);
 
                                     }

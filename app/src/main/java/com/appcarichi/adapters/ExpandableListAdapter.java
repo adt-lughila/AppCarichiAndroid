@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appcarichi.activities.InsertNotaActivity;
@@ -109,6 +110,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.righe_ordine, null);
         }
+        ImageView img_statocarico = convertView.findViewById(R.id.stato_rigaordine);
         TextView codiceArticolo = convertView.findViewById(R.id.codicearticolo);
         codiceArticolo.setText(ro.getCodiceArticolo());
         TextView matricola = convertView.findViewById(R.id.matricola);
@@ -134,6 +136,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         Button spunta = convertView.findViewById(R.id.spuntabutton);
         insertnote.setTag(ro);
         checknote.setTag(ro);
+        if(ro.getColliSpuntati()==ro.getNroColli()){
+            img_statocarico.setImageResource(R.drawable.greencircle);
+        }else if(ro.getColliSpuntati()==0){
+            img_statocarico.setImageResource(R.drawable.redcircle);
+        }else if(ro.getColliSpuntati()<ro.getNroColli()){
+            img_statocarico.setImageResource(R.drawable.yellowcircle);
+        }
+
 
         insertnote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,8 +170,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         spunta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Rigaordine ro=(Rigaordine) checknote.getTag();
                 Intent intent = new Intent(mContext, SpuntaColloActivity.class);
-                intent.putExtra("idcarico",ordine.getIdcarico());
+                intent.putExtra("nCarico",ordine.getIdcarico());
+                intent.putExtra("idRigaOrdine", ro.getIdrigarodine());
                 intent.putExtra("rigaordine", ro);
                 mContext.startActivity(intent);
             }

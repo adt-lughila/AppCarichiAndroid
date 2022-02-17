@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity  {
         ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#CB504D")));
 
-        //load lista iniziale
+        //load lista carichi iniziale
         getCarichi();
 
         //refresh pagina

@@ -70,48 +70,95 @@ public class TrovaCaricoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText barcodeEditText = findViewById(R.id.editTextTrovaCarico);
                 String barcodeEdited = barcodeEditText.getText().toString();
-                String url = Utils.URL_BE+"/carico/"+barcodeEdited;
+                String barcodeRilevato = barcodeText.getText().toString();
 
-                RequestQueue queue=Volley.newRequestQueue(TrovaCaricoActivity.this);
+                if(!barcodeRilevato.equals("Barcode non rilevato")){
+                    String url = Utils.URL_BE+"/carico-barcode/"+barcodeEdited;
 
-                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                        new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONObject carico=response;
-                            int idcarico=carico.getInt("idCarico");
-                            int codice=carico.getInt("nCarico");
-                            String destinazione=carico.getString("desCarico");
-                            String stato_spedizione=carico.getString("descrStato");
-                            String stato_carico=carico.getString("stato");
+                    RequestQueue queue=Volley.newRequestQueue(TrovaCaricoActivity.this);
 
-                            Carico car=new Carico(idcarico,codice,10,8,
-                                    2,destinazione,stato_spedizione,stato_carico);
-                            Intent i = new Intent(TrovaCaricoActivity.this, OrdineActivity.class);
-                            i.putExtra("idCarico", car.getIdcarico());
-                            i.putExtra("codice", car.getCodice());
-                            i.putExtra("tot_colli", car.getTot_colli());
-                            i.putExtra("colli_censiti", car.getColli_censiti());
-                            i.putExtra("num_sedute", car.getNum_sedute());
-                            i.putExtra("destinazione", car.getDestinazione());
-                            i.putExtra("stato_spedizione", car.getStato_spedizione());
-                            i.putExtra("statoCarico", car.getStatoCarico());
-                            startActivity(i);
+                    JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+                                        JSONObject carico=response;
+                                        int idcarico=carico.getInt("idCarico");
+                                        int codice=carico.getInt("nCarico");
+                                        String destinazione=carico.getString("desCarico");
+                                        String stato_spedizione=carico.getString("descrStato");
+                                        String stato_carico=carico.getString("stato");
 
-                        }catch(JSONException e){
-                            e.printStackTrace();
+                                        Carico car=new Carico(idcarico,codice,10,8,
+                                                2,destinazione,stato_spedizione,stato_carico);
+                                        Intent i = new Intent(TrovaCaricoActivity.this, OrdineActivity.class);
+                                        i.putExtra("idCarico", car.getIdcarico());
+                                        i.putExtra("codice", car.getCodice());
+                                        i.putExtra("tot_colli", car.getTot_colli());
+                                        i.putExtra("colli_censiti", car.getColli_censiti());
+                                        i.putExtra("num_sedute", car.getNum_sedute());
+                                        i.putExtra("destinazione", car.getDestinazione());
+                                        i.putExtra("stato_spedizione", car.getStato_spedizione());
+                                        i.putExtra("statoCarico", car.getStatoCarico());
+                                        startActivity(i);
+
+                                    }catch(JSONException e){
+                                        e.printStackTrace();
+                                    }
+                                }
+                            },new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Nessun carico trovato", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                },new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-                        Toast.makeText(getApplicationContext(), "Nessun carico trovato", Toast.LENGTH_SHORT).show();
-                    }
                     });
-                queue.add(request);
+                    queue.add(request);
 
+                }
+                else {
+                    String url = Utils.URL_BE + "/carico-barcode/" + barcodeEdited;
+
+                    RequestQueue queue = Volley.newRequestQueue(TrovaCaricoActivity.this);
+
+                    JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+                                        JSONObject carico = response;
+                                        int idcarico = carico.getInt("idCarico");
+                                        int codice = carico.getInt("nCarico");
+                                        String destinazione = carico.getString("desCarico");
+                                        String stato_spedizione = carico.getString("descrStato");
+                                        String stato_carico = carico.getString("stato");
+
+                                        Carico car = new Carico(idcarico, codice, 10, 8,
+                                                2, destinazione, stato_spedizione, stato_carico);
+                                        Intent i = new Intent(TrovaCaricoActivity.this, OrdineActivity.class);
+                                        i.putExtra("idCarico", car.getIdcarico());
+                                        i.putExtra("codice", car.getCodice());
+                                        i.putExtra("tot_colli", car.getTot_colli());
+                                        i.putExtra("colli_censiti", car.getColli_censiti());
+                                        i.putExtra("num_sedute", car.getNum_sedute());
+                                        i.putExtra("destinazione", car.getDestinazione());
+                                        i.putExtra("stato_spedizione", car.getStato_spedizione());
+                                        i.putExtra("statoCarico", car.getStatoCarico());
+                                        startActivity(i);
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Nessun carico trovato", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    queue.add(request);
+                }
             }
         });
 

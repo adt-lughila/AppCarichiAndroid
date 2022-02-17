@@ -9,9 +9,21 @@ import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.appcarichi.model.Rigaordine;
+import com.appcarichi.utils.Utils;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -23,7 +35,12 @@ import androidx.core.app.ActivityCompat;
 import com.example.appcarichi.R;
 import com.example.appcarichi.databinding.SpuntaColloBinding;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.math.BigDecimal;
 
 
 public class SpuntaColloActivity extends AppCompatActivity {
@@ -35,6 +52,7 @@ public class SpuntaColloActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_PERMISSION = 201;
     private ToneGenerator toneGen1;
     private TextView barcodeText;
+    private EditText editText;
     private String barcodeData;
 
     @Override
@@ -46,14 +64,75 @@ public class SpuntaColloActivity extends AppCompatActivity {
         toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
         surfaceView = findViewById(R.id.surface_view);
         barcodeText = findViewById(R.id.barcode_text);
+        editText = findViewById(R.id.editText);
+
+        System.out.println(barcodeText.getText().toString());
 
         Intent intent = this.getIntent();
-        int carico = intent.getIntExtra("idcarico", 0);
-        System.out.println(carico);
+        int idRigaOrdine = intent.getIntExtra("idRigaOrdine",0);
+        int carico = intent.getIntExtra("nCarico", 0);
+        Rigaordine ro = (Rigaordine) intent.getSerializableExtra("rigaordine");
         TextView idcarico = findViewById(R.id.idcaricospuntacollo);
         idcarico.setText(String.valueOf(carico));
 
         Button confermaSpunta = findViewById(R.id.confermaspunta);
+
+        confermaSpunta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!barcodeText.getText().toString().equals("Barcode non rilevato") &&
+                        barcodeText.getText().toString().equals(ro.getBarcode())){
+                    String url = Utils.URL_BE + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    StringRequest request = new StringRequest(Request.Method.GET, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Toast.makeText(getApplicationContext(), "Collo spuntato", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(getApplicationContext(), SpuntaColloActivity.class);
+                                    i.putExtra("idRigaOrdine", idRigaOrdine);
+                                    i.putExtra("nCarico", carico);
+                                    startActivity(i);
+                                    finish();
+
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), "Errore nella spunta collo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    queue.add(request);
+                }
+                else if(editText.getText().toString().equals(ro.getBarcode())) {
+                    String url = Utils.URL_BE + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    StringRequest request = new StringRequest(Request.Method.GET, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Toast.makeText(getApplicationContext(), "Collo spuntato", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(getApplicationContext(), SpuntaColloActivity.class);
+                                    i.putExtra("idRigaOrdine", idRigaOrdine);
+                                    i.putExtra("nCarico", carico);
+                                    startActivity(i);
+                                    finish();
+
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), "Errore nella spunta collo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    queue.add(request);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Barcode errato", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
 
         initialiseDetectorsAndSources();
