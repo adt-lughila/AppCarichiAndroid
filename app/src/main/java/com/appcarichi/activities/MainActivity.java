@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity  {
                                 JSONObject carico=response.getJSONObject(i);
                                 int idcarico=carico.getInt("idCarico");
                                 int codice=carico.getInt("nCarico");
-                                String destinazione=carico.getString("desCarico");
+                                String destinazione=carico.getString("negozio");
                                 String stato_spedizione=carico.getString("descrStato");
                                 String stato_carico=carico.getString("stato");
 

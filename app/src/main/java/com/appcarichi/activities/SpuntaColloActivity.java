@@ -82,6 +82,14 @@ public class SpuntaColloActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(!barcodeText.getText().toString().equals("Barcode non rilevato") &&
                         barcodeText.getText().toString().equals(ro.getBarcode())){
+                    if(ro.getColliSpuntati() >= ro.getNroColli()) {
+                        Toast.makeText(getApplicationContext(), "Collo già letto", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getApplicationContext(), SpuntaColloActivity.class);
+                        i.putExtra("idRigaOrdine", idRigaOrdine);
+                        i.putExtra("nCarico", carico);
+                        startActivity(i);
+                        finish();
+                    }
                     String url = Utils.URL_BE + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                     StringRequest request = new StringRequest(Request.Method.GET, url,

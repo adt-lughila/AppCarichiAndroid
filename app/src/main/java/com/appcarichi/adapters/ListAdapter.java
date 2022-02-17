@@ -60,7 +60,11 @@ public class ListAdapter extends ArrayAdapter<Carico> {
         TextView codiceCarico = convertView.findViewById(R.id.codiceCarico);
         codiceCarico.setText(String.valueOf(carico.getCodice()));
         TextView destinazione = convertView.findViewById(R.id.destinazione);
-        destinazione.setText(carico.getDestinazione());
+        if(("null").equals(carico.getDestinazione())) {
+            destinazione.setText("");
+        } else {
+            destinazione.setText(carico.getDestinazione());
+        }
         TextView tot_colli = convertView.findViewById(R.id.tot_colli);
         tot_colli.setText(String.valueOf(carico.getTot_colli()));
         TextView colli_censiti = convertView.findViewById(R.id.colli_censiti);

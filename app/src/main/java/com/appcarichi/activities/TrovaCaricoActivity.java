@@ -73,7 +73,7 @@ public class TrovaCaricoActivity extends AppCompatActivity {
                 String barcodeRilevato = barcodeText.getText().toString();
 
                 if(!barcodeRilevato.equals("Barcode non rilevato")){
-                    String url = Utils.URL_BE+"/carico-barcode/"+barcodeEdited;
+                    String url = Utils.URL_BE+"/carico-barcode/"+barcodeRilevato;
 
                     RequestQueue queue=Volley.newRequestQueue(TrovaCaricoActivity.this);
 
