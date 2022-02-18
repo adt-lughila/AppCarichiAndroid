@@ -26,6 +26,7 @@ import com.appcarichi.utils.Utils;
 import com.example.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
 import com.example.appcarichi.databinding.ActivityInsertNotaBinding;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,7 +50,6 @@ public class InsertNotaActivity extends Activity {
         setWindowHeight(32);
         setWindowWidth(67);
 
-
         Intent i = this.getIntent();
         Rigaordine ro = (Rigaordine) i.getSerializableExtra("rigaordine");
 
@@ -66,21 +66,24 @@ public class InsertNotaActivity extends Activity {
 
                 Nota n = new Nota(codicenota, descrizione);
 
+                NotaRigaOrdine nRo = new NotaRigaOrdine(ro,n,commento,"utente");
+
                 String url = Utils.URL_BE+"/inserisci-nota";
                 RequestQueue requestQueue = Volley.newRequestQueue(InsertNotaActivity.this);
-                JSONObject notaRO = new JSONObject();
-                try {
-                    notaRO.put("rigaOrdine", ro);
-                    notaRO.put("nota",n);
-                    notaRO.put("commento",commento);
-                    notaRO.put("utente", "utente");
-                } catch (JSONException e) {
+
+                JSONObject nroData = new JSONObject();
+                try{
+                    nroData.put("rigaOrdine",ro);
+                    nroData.put("nota",n);
+                    nroData.put("commento",commento);
+                    nroData.put("utente","utente");
+                }catch(JSONException e){
                     e.printStackTrace();
                 }
 
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,notaRO, new Response.Listener<JSONObject>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String response) {
 
                         Toast.makeText(getApplicationContext(), "Nota salvata", Toast.LENGTH_SHORT).show();
                     }
@@ -89,8 +92,17 @@ public class InsertNotaActivity extends Activity {
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), "Errore nel salvataggio nota", Toast.LENGTH_SHORT).show();
                     }
-                });
-                requestQueue.add(jsonObjectRequest);
+                }){
+                    @Override
+                    public byte[] getBody() throws AuthFailureError {
+                        return nroData.toString().getBytes();
+                    }
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json";
+                    }
+                };
+                requestQueue.add(stringRequest);
                 finish();
             }
         });
@@ -129,4 +141,6 @@ public class InsertNotaActivity extends Activity {
         }
         else{return 0;}
     }
+
+
 }

@@ -132,7 +132,7 @@ public class CheckNoteActivity extends Activity {
                                     }
                                 }
                             });
-                          /*  modifica.setOnClickListener(new View.OnClickListener() {
+                            modifica.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     RelativeLayout relativeLayout;
@@ -148,19 +148,27 @@ public class CheckNoteActivity extends Activity {
                                             editText = (EditText) linearLayout.getChildAt(3);
 
                                             if (checkbox.isChecked()) {
-                                                Nota nota = (Nota) notelistview.getAdapter().getItem(i);
-                                                int idnota = nota.getIdnota();
+                                                NotaRigaOrdine notaRO = (NotaRigaOrdine) notelistview.getAdapter().getItem(i);
+                                                int idNotaRigaOrdine = notaRO.getIdNotaRigaOrdine();
                                                 String commento = editText.getText().toString();
-                                                String url3 = "http://192.168.1.158:8080/restCarichi/appCarichi/updatenota/" + idnota;
-                                                RequestQueue queue3 = Volley.newRequestQueue(CheckNoteActivity.this);
-                                                StringRequest putRequest = new StringRequest(Request.Method.PUT, url3,
-                                                        new Response.Listener<String>()
-                                                        {
-                                                            @Override
-                                                            public void onResponse(String response) {
+                                                String url3 = Utils.URL_BE+"/modifica-nota-riga-ordine";
+                                                JSONObject rigaOrdineData = new JSONObject();
+                                                try {
+                                                    rigaOrdineData.put("idNotaRigaOrdine", idNotaRigaOrdine);
+                                                    rigaOrdineData.put("commento", commento);
 
-                                                            }
-                                                        },
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                RequestQueue queue3 = Volley.newRequestQueue(CheckNoteActivity.this);
+                                                StringRequest stringRequest = new StringRequest(Request.Method.POST, url3, new Response.Listener<String>() {
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        Intent i = new Intent(CheckNoteActivity.this, CheckNoteActivity.class);
+                                                        i.putExtra("rigaordine", ro);
+                                                        startActivity(i);
+                                                        finish();
+                                                    }},
                                                         new Response.ErrorListener()
                                                         {
                                                             @Override
@@ -168,20 +176,18 @@ public class CheckNoteActivity extends Activity {
 
                                                             }
                                                         }
-                                                ) {
+                                                ){
                                                     @Override
-                                                    protected Map<String, String> getParams() throws AuthFailureError {
-                                                        Map<String, String>  params = new HashMap<String, String> ();
-                                                        params.put("commento", commento);
-                                                        params.put("idnota", String.valueOf(idnota));
-                                                        return params;
+                                                    public byte[] getBody() throws AuthFailureError {
+                                                        return rigaOrdineData.toString().getBytes();
+                                                    }
+                                                    @Override
+                                                    public String getBodyContentType() {
+                                                        return "application/json";
                                                     }
                                                 };
-                                                queue3.add(putRequest);
-                                                Intent intent = new Intent(CheckNoteActivity.this, CheckNoteActivity.class);
-                                                intent.putExtra("rigaordine", ro);
-                                                startActivity(intent);
-                                                finish();
+
+                                                queue3.add(stringRequest);
 
                                             }
                                         }
@@ -189,7 +195,7 @@ public class CheckNoteActivity extends Activity {
                                         e.printStackTrace();
                                     }
                                 }
-                            }); */
+                            });
 
                         } catch (JSONException e) {
                             e.printStackTrace();

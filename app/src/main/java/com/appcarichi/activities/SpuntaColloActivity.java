@@ -66,14 +66,14 @@ public class SpuntaColloActivity extends AppCompatActivity {
         barcodeText = findViewById(R.id.barcode_text);
         editText = findViewById(R.id.editText);
 
-        System.out.println(barcodeText.getText().toString());
-
         Intent intent = this.getIntent();
         int idRigaOrdine = intent.getIntExtra("idRigaOrdine",0);
         int carico = intent.getIntExtra("nCarico", 0);
+        int codice = intent.getIntExtra("codice", 0);
         Rigaordine ro = (Rigaordine) intent.getSerializableExtra("rigaordine");
         TextView idcarico = findViewById(R.id.idcaricospuntacollo);
-        idcarico.setText(String.valueOf(carico));
+        idcarico.setText(String.valueOf(codice));
+
 
         Button confermaSpunta = findViewById(R.id.confermaspunta);
 
@@ -89,51 +89,61 @@ public class SpuntaColloActivity extends AppCompatActivity {
                         i.putExtra("nCarico", carico);
                         startActivity(i);
                         finish();
-                    }
-                    String url = Utils.URL_BE + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
-                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                    StringRequest request = new StringRequest(Request.Method.GET, url,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    Toast.makeText(getApplicationContext(), "Collo spuntato", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getApplicationContext(), SpuntaColloActivity.class);
-                                    i.putExtra("idRigaOrdine", idRigaOrdine);
-                                    i.putExtra("nCarico", carico);
-                                    startActivity(i);
-                                    finish();
+                    }else {
+                        String url = Utils.URL_BE + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
+                        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                        StringRequest request = new StringRequest(Request.Method.GET, url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Toast.makeText(getApplicationContext(), "Collo spuntato", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(getApplicationContext(), SpuntaColloActivity.class);
+                                        i.putExtra("idRigaOrdine", idRigaOrdine);
+                                        i.putExtra("nCarico", carico);
+                                        startActivity(i);
+                                        finish();
 
-                                }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getApplicationContext(), "Errore nella spunta collo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    queue.add(request);
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(), "Errore nella spunta collo", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        queue.add(request);
+                    }
                 }
                 else if(editText.getText().toString().equals(ro.getBarcode())) {
-                    String url = Utils.URL_BE + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
-                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                    StringRequest request = new StringRequest(Request.Method.GET, url,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    Toast.makeText(getApplicationContext(), "Collo spuntato", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getApplicationContext(), SpuntaColloActivity.class);
-                                    i.putExtra("idRigaOrdine", idRigaOrdine);
-                                    i.putExtra("nCarico", carico);
-                                    startActivity(i);
-                                    finish();
+                    if (ro.getColliSpuntati() >= ro.getNroColli()) {
+                        Toast.makeText(getApplicationContext(), "Collo già letto", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getApplicationContext(), SpuntaColloActivity.class);
+                        i.putExtra("idRigaOrdine", idRigaOrdine);
+                        i.putExtra("nCarico", carico);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        String url = Utils.URL_BE + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
+                        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                        StringRequest request = new StringRequest(Request.Method.GET, url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Toast.makeText(getApplicationContext(), "Collo spuntato", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(getApplicationContext(), SpuntaColloActivity.class);
+                                        i.putExtra("idRigaOrdine", idRigaOrdine);
+                                        i.putExtra("nCarico", carico);
+                                        startActivity(i);
+                                        finish();
 
-                                }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getApplicationContext(), "Errore nella spunta collo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    queue.add(request);
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(), "Errore nella spunta collo", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        queue.add(request);
+                    }
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Barcode errato", Toast.LENGTH_SHORT).show();

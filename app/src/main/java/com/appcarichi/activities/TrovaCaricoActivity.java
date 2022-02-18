@@ -88,9 +88,11 @@ public class TrovaCaricoActivity extends AppCompatActivity {
                                         String destinazione=carico.getString("desCarico");
                                         String stato_spedizione=carico.getString("descrStato");
                                         String stato_carico=carico.getString("stato");
+                                        int numTotColli = Integer.valueOf(carico.getString("numTotColli"));
+                                        int numColliSpuntati = Integer.valueOf(carico.getString("numColliSpuntati"));
 
                                         Carico car=new Carico(idcarico,codice,10,8,
-                                                2,destinazione,stato_spedizione,stato_carico);
+                                                2,destinazione,stato_spedizione,stato_carico,numTotColli,numColliSpuntati);
                                         Intent i = new Intent(TrovaCaricoActivity.this, OrdineActivity.class);
                                         i.putExtra("idCarico", car.getIdcarico());
                                         i.putExtra("codice", car.getCodice());
@@ -132,9 +134,11 @@ public class TrovaCaricoActivity extends AppCompatActivity {
                                         String destinazione = carico.getString("desCarico");
                                         String stato_spedizione = carico.getString("descrStato");
                                         String stato_carico = carico.getString("stato");
+                                        int numTotColli = Integer.valueOf(carico.getString("numTotColli"));
+                                        int numColliSpuntati = Integer.valueOf(carico.getString("numColliSpuntati"));
 
                                         Carico car = new Carico(idcarico, codice, 10, 8,
-                                                2, destinazione, stato_spedizione, stato_carico);
+                                                2, destinazione, stato_spedizione, stato_carico,numTotColli,numColliSpuntati);
                                         Intent i = new Intent(TrovaCaricoActivity.this, OrdineActivity.class);
                                         i.putExtra("idCarico", car.getIdcarico());
                                         i.putExtra("codice", car.getCodice());

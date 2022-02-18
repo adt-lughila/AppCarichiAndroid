@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -127,10 +128,13 @@ public class MainActivity extends AppCompatActivity  {
                                 String destinazione=carico.getString("negozio");
                                 String stato_spedizione=carico.getString("descrStato");
                                 String stato_carico=carico.getString("stato");
+                                int numTotColli = Integer.valueOf(carico.getString("numTotColli"));
+                                int numColliSpuntati = Integer.valueOf(carico.getString("numColliSpuntati"));
 
                                 Carico car=new Carico(idcarico,codice,10,8,
-                                        2,destinazione,stato_spedizione,stato_carico);
+                                        2,destinazione,stato_spedizione,stato_carico,numColliSpuntati,numTotColli);
                                 carichi.add(car);
+
                             }
 
                             //visualizzazione carichi

@@ -4,10 +4,11 @@ import java.io.Serializable;
 
 public class Carico implements Serializable {
 
-    int idcarico, codice, tot_colli, colli_censiti, num_sedute;
+    int idcarico, codice, tot_colli, colli_censiti, num_sedute, numColliSpuntati, numTotColli;
     String destinazione, stato_spedizione, statoCarico;
 
-    public Carico(int idcarico, int codice, int tot_colli, int colli_censiti, int num_sedute, String destinazione, String stato_spedizione, String statoCarico) {
+
+    public Carico(int idcarico, int codice, int tot_colli, int colli_censiti, int num_sedute, String destinazione, String stato_spedizione, String statoCarico, int numColliSpuntati, int numTotColli) {
         this.idcarico = idcarico;
         this.codice = codice;
         this.tot_colli = tot_colli;
@@ -16,6 +17,8 @@ public class Carico implements Serializable {
         this.destinazione = destinazione;
         this.stato_spedizione = stato_spedizione;
         this.statoCarico = statoCarico;
+        this.numColliSpuntati = numColliSpuntati;
+        this.numTotColli = numTotColli;
     }
 
     public int getIdcarico() {return idcarico; }
@@ -75,4 +78,14 @@ public class Carico implements Serializable {
     public void setStatoCarico(String statoCarico) {
         this.statoCarico = statoCarico;
     }
+
+    public int getNumColliSpuntati() {
+        return numColliSpuntati;
+    }
+
+    public int getNumTotColli() {
+        return numTotColli;
+    }
 }
+
+

@@ -13,6 +13,7 @@ public class Nota implements Serializable {
 
     }
 
+    public int getIdNota() {return idNota;}
 
     public int getCodicenota() {
         return codicenota;

@@ -8,6 +8,11 @@ public class FlagCarico {
 
     private BigDecimal numColliSpuntati;
 
+    public FlagCarico(BigDecimal numTotColli, BigDecimal numColliSpuntati) {
+        this.numTotColli = numTotColli;
+        this.numColliSpuntati = numColliSpuntati;
+    }
+
     public BigDecimal getNumTotColli() {
         return numTotColli;
     }

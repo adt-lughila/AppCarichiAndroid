@@ -30,12 +30,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Context mContext;
     private List<Ordine> mListData;
     private HashMap<Ordine, List<Rigaordine>> mListChildData;
+    private int codice;
 
     public ExpandableListAdapter(Context context, List<Ordine> listData,
-                                 HashMap<Ordine, List<Rigaordine>> listChildData){
+                                 HashMap<Ordine, List<Rigaordine>> listChildData, int codice){
         this.mContext = context;
         this.mListData = listData;
         this.mListChildData = listChildData;
+        this.codice = codice;
     }
 
     @Override
@@ -140,10 +142,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             img_statocarico.setImageResource(R.drawable.greencircle);
         }else if(ro.getColliSpuntati()==0){
             img_statocarico.setImageResource(R.drawable.redcircle);
-        }else if(ro.getColliSpuntati()<ro.getNroColli()){
+        }else if(ro.getColliSpuntati()<ro.getNroColli() && ro.getColliSpuntati()!=0){
             img_statocarico.setImageResource(R.drawable.yellowcircle);
         }
-
 
         insertnote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +176,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 intent.putExtra("nCarico",ordine.getIdcarico());
                 intent.putExtra("idRigaOrdine", ro.getIdrigarodine());
                 intent.putExtra("rigaordine", ro);
+                intent.putExtra("codice", codice);
                 mContext.startActivity(intent);
             }
         });

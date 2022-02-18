@@ -17,6 +17,13 @@ public class NotaRigaOrdine implements Serializable {
         this.utente = utente;
     }
 
+    public NotaRigaOrdine(Rigaordine ro, Nota nota, String commento, String utente) {
+        this.ro = ro;
+        this.nota = nota;
+        this.commento = commento;
+        this.utente = utente;
+    }
+
     public int getIdNotaRigaOrdine(){
         return idNotaRigaOrdine;
     }

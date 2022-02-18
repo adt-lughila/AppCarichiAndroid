@@ -3,6 +3,7 @@ package com.appcarichi.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,11 +60,23 @@ public class OrdineActivity extends AppCompatActivity {
         TextView codicecarico = binding.numerocaricoordini;
         codicecarico.setText(String.valueOf(codice));
 
-        init(idcarico);
+        init(idcarico,codice);
+
+        Button aggiorna=findViewById(R.id.aggiornaordini);
+        aggiorna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OrdineActivity.this,OrdineActivity.class);
+                intent.putExtra("idCarico",idcarico);
+                intent.putExtra("codice",codice);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
-    public void init(int codice) {
+    public void init(int codice,int numeroCarico) {
         expandableListView = (ExpandableListView) findViewById(R.id.orderlistview);
         getGroupData(codice,new VolleyCallback() {
             @Override
@@ -97,7 +110,7 @@ public class OrdineActivity extends AppCompatActivity {
                                         righeordine.add(ro);
 
                                     }
-                                    creaListaFinale(righeordine,ordini,codice);
+                                    creaListaFinale(righeordine,ordini,numeroCarico);
 
 
                                 }catch(JSONException e){
@@ -125,7 +138,7 @@ public class OrdineActivity extends AppCompatActivity {
             childData.put(ordini.get(i), getRigheOrdine(ordini.get(i),righeordine));
         }
 
-        adapter = new ExpandableListAdapter(this, ordini, childData);
+        adapter = new ExpandableListAdapter(this, ordini, childData, carico);
         expandableListView.setAdapter(adapter);
       /*  expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
