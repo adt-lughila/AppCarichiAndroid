@@ -21,24 +21,21 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.appcarichi.R;
 import com.appcarichi.adapters.NoteListAdapter;
+import com.appcarichi.databinding.ActivityVisualizzaNoteBinding;
 import com.appcarichi.model.Nota;
 import com.appcarichi.model.NotaRigaOrdine;
 import com.appcarichi.model.Rigaordine;
 import com.appcarichi.utils.Utils;
-import com.example.appcarichi.R;
-import com.example.appcarichi.databinding.ActivityVisualizzaNoteBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CheckNoteActivity extends Activity {
 
@@ -62,8 +59,10 @@ public class CheckNoteActivity extends Activity {
         Intent intent=this.getIntent();
         Rigaordine ro = (Rigaordine) intent.getSerializableExtra("rigaordine");
         int idrigaordine = ro.getIdrigarodine();
+        elimina.setVisibility(ro.isCaricoSpedito() ? View.INVISIBLE : View.VISIBLE);
+        modifica.setVisibility(ro.isCaricoSpedito() ? View.INVISIBLE : View.VISIBLE);
 
-        String url= Utils.URL_BE+"/nota-riga-ordine?idRigaOrdine="+idrigaordine;
+        String url= Utils.getProperty("url.be",getApplicationContext())+"/nota-riga-ordine?idRigaOrdine="+idrigaordine;
         ArrayList<NotaRigaOrdine> note=new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -104,7 +103,7 @@ public class CheckNoteActivity extends Activity {
                                             if (checkbox.isChecked()) {
                                                 NotaRigaOrdine notaRO = (NotaRigaOrdine) notelistview.getAdapter().getItem(i);
 
-                                                String url2 = Utils.URL_BE+"/delete-nota-riga-ordine?idNotaRigaOrdine="+notaRO.getIdNotaRigaOrdine();
+                                                String url2 = Utils.getProperty("url.be",getApplicationContext())+"/delete-nota-riga-ordine?idNotaRigaOrdine="+notaRO.getIdNotaRigaOrdine();
                                                 RequestQueue queue2 = Volley.newRequestQueue(CheckNoteActivity.this);
 
                                                 StringRequest request = new StringRequest(Request.Method.POST, url2,
@@ -151,7 +150,7 @@ public class CheckNoteActivity extends Activity {
                                                 NotaRigaOrdine notaRO = (NotaRigaOrdine) notelistview.getAdapter().getItem(i);
                                                 int idNotaRigaOrdine = notaRO.getIdNotaRigaOrdine();
                                                 String commento = editText.getText().toString();
-                                                String url3 = Utils.URL_BE+"/modifica-nota-riga-ordine";
+                                                String url3 = Utils.getProperty("url.be",getApplicationContext())+"/modifica-nota-riga-ordine";
                                                 JSONObject rigaOrdineData = new JSONObject();
                                                 try {
                                                     rigaOrdineData.put("idNotaRigaOrdine", idNotaRigaOrdine);

@@ -27,8 +27,8 @@ import com.android.volley.toolbox.Volley;
 import com.appcarichi.model.Carico;
 import com.appcarichi.adapters.ListAdapter;
 import com.appcarichi.utils.Utils;
-import com.example.appcarichi.R;
-import com.example.appcarichi.databinding.ActivityMainBinding;
+import com.appcarichi.R;
+import com.appcarichi.databinding.ActivityMainBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity  {
 
         ListView listview=findViewById(R.id.listview);
 
-        String url= Utils.URL_BE+"/carichi";
+        String url= Utils.getProperty("url.be",getApplicationContext())+"/carichi";
 
         ArrayList<Carico> carichi=new ArrayList<>();
         RequestQueue queue=Volley.newRequestQueue(this);
@@ -131,8 +131,7 @@ public class MainActivity extends AppCompatActivity  {
                                 int numTotColli = Integer.valueOf(carico.getString("numTotColli"));
                                 int numColliSpuntati = Integer.valueOf(carico.getString("numColliSpuntati"));
 
-                                Carico car=new Carico(idcarico,codice,10,8,
-                                        2,destinazione,stato_spedizione,stato_carico,numColliSpuntati,numTotColli);
+                                Carico car=new Carico(idcarico,codice,numTotColli,destinazione,stato_spedizione,stato_carico,numColliSpuntati,numTotColli);
                                 carichi.add(car);
 
                             }
@@ -149,8 +148,8 @@ public class MainActivity extends AppCompatActivity  {
                                     Intent i = new Intent(MainActivity.this, OrdineActivity.class);
                                     i.putExtra("idCarico", carichi.get(position).getIdcarico());
                                     i.putExtra("codice", carichi.get(position).getCodice());
-                                    i.putExtra("tot_colli", carichi.get(position).getTot_colli());
-                                    i.putExtra("colli_censiti", carichi.get(position).getColli_censiti());
+                                    i.putExtra("tot_colli", carichi.get(position).getNumTotColli());
+                                    i.putExtra("colli_censiti", carichi.get(position).getNumColliSpuntati());
                                     i.putExtra("num_sedute", carichi.get(position).getNum_sedute());
                                     i.putExtra("destinazione", carichi.get(position).getDestinazione());
                                     i.putExtra("stato_spedizione", carichi.get(position).getStato_spedizione());

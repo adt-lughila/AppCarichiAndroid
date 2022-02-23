@@ -18,7 +18,7 @@ import com.appcarichi.activities.CheckNoteActivity;
 import com.appcarichi.activities.OrdineActivity;
 import com.appcarichi.activities.SpuntaColloActivity;
 import com.appcarichi.model.Ordine;
-import com.example.appcarichi.R;
+import com.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
 
 import java.util.ArrayList;
@@ -31,13 +31,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Ordine> mListData;
     private HashMap<Ordine, List<Rigaordine>> mListChildData;
     private int codice;
+    private boolean caricoSpedito;
 
     public ExpandableListAdapter(Context context, List<Ordine> listData,
-                                 HashMap<Ordine, List<Rigaordine>> listChildData, int codice){
+                                 HashMap<Ordine, List<Rigaordine>> listChildData, int codice,boolean caricoSpedito){
         this.mContext = context;
         this.mListData = listData;
         this.mListChildData = listChildData;
         this.codice = codice;
+        this.caricoSpedito = caricoSpedito;
     }
 
     @Override
@@ -135,9 +137,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         prezzo.setText(String.valueOf(ro.getPrezzo()));
         ImageButton insertnote = convertView.findViewById(R.id.insertnota);
         ImageButton checknote = convertView.findViewById(R.id.checknote);
-        Button spunta = convertView.findViewById(R.id.spuntabutton);
+        ImageButton spunta = convertView.findViewById(R.id.spuntanota);
         insertnote.setTag(ro);
         checknote.setTag(ro);
+        insertnote.setVisibility(caricoSpedito ? View.INVISIBLE : View.VISIBLE);
+        spunta.setVisibility(caricoSpedito ? View.INVISIBLE : View.VISIBLE);
         if(ro.getColliSpuntati()==ro.getNroColli()){
             img_statocarico.setImageResource(R.drawable.greencircle);
         }else if(ro.getColliSpuntati()==0){

@@ -1,71 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:id="@+id/modNote"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.appcarichi.activities.InsertNotaActivity"
-    tools:ignore="HardcodedText"
-    android:backgroundTint="@color/white"
-    tools:visibility="visible">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:id="@+id/comandi_note"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        app:layout_constraintStart_toEndOf="@id/guideline1"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/horizontalguideline"
+        app:layout_constraintBottom_toBottomOf="@id/horizontalBottomguideline">
         <TextView
-            android:layout_width="260dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text="SELEZIONA"
-            android:textColor="@color/black"
-            android:textSize="20dp"/>
+            android:text="SELEZIONA"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/guideline2"
+        app:layout_constraintEnd_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/horizontalguideline"
+        app:layout_constraintBottom_toBottomOf="@id/horizontalBottomguideline">
         <TextView
-            android:layout_width="260dp"
+            android:id="@+id/codice_nota"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
             android:text="CODICE NOTA"
-            android:textColor="@color/black"
-            android:textSize="20dp"/>
+            android:textAlignment="center"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/guideline3"
+        app:layout_constraintEnd_toStartOf="@id/guideline4"
+        app:layout_constraintTop_toBottomOf="@id/horizontalguideline"
+        app:layout_constraintBottom_toBottomOf="@id/horizontalBottomguideline">
         <TextView
-            android:layout_width="308dp"
+            android:id="@+id/descrizione"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
             android:text="DESCRIZIONE NOTA"
-            android:textColor="@color/black"
-            android:textSize="20dp"/>
+            android:textAlignment="center"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/guideline4"
+        app:layout_constraintEnd_toStartOf="@id/guideline5"
+        app:layout_constraintTop_toBottomOf="@id/horizontalguideline"
+        app:layout_constraintBottom_toBottomOf="@id/horizontalBottomguideline">
         <TextView
-            android:layout_width="354dp"
+            android:id="@+id/commento"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
             android:text="COMMENTO"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textAlignment="center" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/guideline1"
+        app:layout_constraintEnd_toStartOf="@id/guideline5"
+        app:layout_constraintTop_toBottomOf="@id/horizontalBottomguideline">
+        <ListView
+            android:id="@+id/notelistview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/comandi_note"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="0dp"
+            android:layout_weight="@integer/material_motion_duration_long_2"
+            tools:listitem="@layout/note_list_view">
+        </ListView>
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/notelistview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/comandi_note"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="0dp"
-        android:layout_weight="@integer/material_motion_duration_long_2"
-        tools:listitem="@layout/note_list_view">
-    </ListView>
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="108dp"
-        android:layout_below="@+id/notelistview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/guidelineButtons"
+        app:layout_constraintEnd_toStartOf="@id/guideline4"
+        app:layout_constraintTop_toBottomOf="@id/horizontalBottomBottomguideline"
         android:orientation="horizontal">
 
         <Button
@@ -73,12 +95,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="350dp"
-            android:layout_marginTop="30dp"
             android:backgroundTint="#CB504D"
             android:text="CANCELLA NOTA"
-            android:textColor="@color/white"
-            android:textSize="20dp">
+            android:textColor="@color/white">
 
         </Button>
 
@@ -87,16 +106,72 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginStart="15dp"
             android:backgroundTint="#CB504D"
             android:text="SALVA MODIFICHE"
             android:textColor="@color/white"
-            android:textSize="20dp">
+            >
 
         </Button>
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalguideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.01" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalBottomguideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalBottomBottomguideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

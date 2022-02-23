@@ -32,8 +32,8 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.example.appcarichi.R;
-import com.example.appcarichi.databinding.SpuntaColloBinding;
+import com.appcarichi.R;
+import com.appcarichi.databinding.SpuntaColloBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,8 +71,8 @@ public class SpuntaColloActivity extends AppCompatActivity {
         int carico = intent.getIntExtra("nCarico", 0);
         int codice = intent.getIntExtra("codice", 0);
         Rigaordine ro = (Rigaordine) intent.getSerializableExtra("rigaordine");
-        TextView idcarico = findViewById(R.id.idcaricospuntacollo);
-        idcarico.setText(String.valueOf(codice));
+        TextView idcarico = findViewById(R.id.spuntadelcollo);
+        idcarico.setText("Spunta del collo, carico "+String.valueOf(codice));
 
 
         Button confermaSpunta = findViewById(R.id.confermaspunta);
@@ -90,7 +90,7 @@ public class SpuntaColloActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     }else {
-                        String url = Utils.URL_BE + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
+                        String url = Utils.getProperty("url.be",getApplicationContext()) + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
                         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                         StringRequest request = new StringRequest(Request.Method.GET, url,
                                 new Response.Listener<String>() {
@@ -122,7 +122,7 @@ public class SpuntaColloActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     } else {
-                        String url = Utils.URL_BE + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
+                        String url = Utils.getProperty("url.be",getApplicationContext()) + "/spunta-collo?idRigaOrdine=" + idRigaOrdine;
                         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                         StringRequest request = new StringRequest(Request.Method.GET, url,
                                 new Response.Listener<String>() {

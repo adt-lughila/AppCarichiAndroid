@@ -5,26 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/trovacaricotext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trova carico"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@id/guidelineSurfaceSx"
+        app:layout_constraintEnd_toEndOf="@id/guidelineSurfaceDx"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        tools:ignore="MissingConstraints" />
+
     <SurfaceView
         android:id="@+id/surface_view_trovacarico"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="150dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        android:scaleType="centerCrop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@id/guidelineSurfaceSx"
+        app:layout_constraintEnd_toEndOf="@id/guidelineSurfaceDx"
+        app:layout_constraintTop_toBottomOf="@id/trovacaricotext" />
 
     <TextView
         android:id="@+id/barcode_text_trovacarico"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:padding="5dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="Barcode non rilevato"
         android:textAlignment="center"
         android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineSurfaceSx"
+        app:layout_constraintEnd_toEndOf="@id/guidelineSurfaceDx"
         app:layout_constraintTop_toBottomOf="@id/surface_view_trovacarico" />
 
     <TextView
@@ -32,13 +46,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/barcode_text_trovacarico"
-        android:layout_marginTop="90dp"
+
         android:text="Inserisci codice manualmente:"
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/barcode_text_trovacarico"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/barcode_text_trovacarico"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -56,28 +71,42 @@
         android:id="@+id/ricercacarico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="676dp"
         android:backgroundTint="#CB504D"
         android:text="RICERCA"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTrovaCarico"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/trovacaricotext"
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="556dp"
-        android:layout_marginTop="88dp"
-        android:text="Trova carico"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineSurfaceSx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineSurfaceDx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

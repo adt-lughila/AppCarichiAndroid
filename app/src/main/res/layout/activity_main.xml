@@ -37,36 +37,64 @@
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:background="@color/lightgray"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/trovaCaricoButton"
-                    android:layout_width="130dp"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/trovaCaricoButton"
+                        android:layout_width="130sp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:backgroundTint="#cb504d"
+                        android:text="TROVA CARICO" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="280dp"
-                    android:backgroundTint="#cb504d"
-                    android:text="TROVA CARICO" />
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_weight="1">
 
-                <Button
-                    android:id="@+id/RefreshButton"
-                    android:layout_width="130dp"
+                    <Button
+                        android:id="@+id/RefreshButton"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:backgroundTint="#cb504d"
+                        android:text="AGGIORNA" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="150dp"
-                    android:backgroundTint="#cb504d"
-                    android:text="AGGIORNA" />
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_weight="1">
 
-                <Button
-                    android:id="@+id/logout"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="150dp"
-                    android:layout_marginEnd="350dp"
-                    android:backgroundTint="#cb504d"
-                    android:text="LOGOUT" />
+                    <Button
+                        android:id="@+id/logout"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:backgroundTint="#cb504d"
+                        android:text="LOGOUT" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

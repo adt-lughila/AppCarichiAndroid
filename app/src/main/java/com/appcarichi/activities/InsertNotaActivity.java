@@ -17,22 +17,17 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.appcarichi.R;
+import com.appcarichi.databinding.ActivityInsertNotaBinding;
 import com.appcarichi.model.Nota;
 import com.appcarichi.model.NotaRigaOrdine;
-import com.appcarichi.utils.Utils;
-import com.example.appcarichi.R;
 import com.appcarichi.model.Rigaordine;
-import com.example.appcarichi.databinding.ActivityInsertNotaBinding;
-import com.google.gson.Gson;
+import com.appcarichi.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class InsertNotaActivity extends Activity {
 
@@ -68,13 +63,18 @@ public class InsertNotaActivity extends Activity {
 
                 NotaRigaOrdine nRo = new NotaRigaOrdine(ro,n,commento,"utente");
 
-                String url = Utils.URL_BE+"/inserisci-nota";
+                String url = Utils.getProperty("url.be",getApplicationContext())+"/inserisci-nota";
                 RequestQueue requestQueue = Volley.newRequestQueue(InsertNotaActivity.this);
 
                 JSONObject nroData = new JSONObject();
+                JSONObject nota = new JSONObject();
+                JSONObject rigaordine = new JSONObject();
                 try{
-                    nroData.put("rigaOrdine",ro);
-                    nroData.put("nota",n);
+                    nota.put("codiceNota",codicenota);
+                    nota.put("descrizioneNota",descrizione);
+                    rigaordine.put("idRigaOrdine",ro.getIdrigarodine());
+                    nroData.put("nota",nota);
+                    nroData.put("rigaOrdine",rigaordine);
                     nroData.put("commento",commento);
                     nroData.put("utente","utente");
                 }catch(JSONException e){

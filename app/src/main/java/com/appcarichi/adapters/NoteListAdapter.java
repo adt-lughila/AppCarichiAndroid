@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.appcarichi.model.Nota;
 import com.appcarichi.model.NotaRigaOrdine;
-import com.example.appcarichi.R;
+import com.appcarichi.R;
 
 import java.util.ArrayList;
 

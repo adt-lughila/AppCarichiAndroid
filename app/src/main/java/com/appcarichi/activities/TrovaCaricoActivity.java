@@ -27,9 +27,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.model.Carico;
 import com.appcarichi.utils.Utils;
-import com.example.appcarichi.R;
-import com.example.appcarichi.databinding.SpuntaColloBinding;
-import com.example.appcarichi.databinding.TrovaCaricoBinding;
+import com.appcarichi.R;
+import com.appcarichi.databinding.SpuntaColloBinding;
+import com.appcarichi.databinding.TrovaCaricoBinding;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -73,7 +73,7 @@ public class TrovaCaricoActivity extends AppCompatActivity {
                 String barcodeRilevato = barcodeText.getText().toString();
 
                 if(!barcodeRilevato.equals("Barcode non rilevato")){
-                    String url = Utils.URL_BE+"/carico-barcode/"+barcodeRilevato;
+                    String url = Utils.getProperty("url.be",getApplicationContext())+"/carico-barcode/"+barcodeRilevato;
 
                     RequestQueue queue=Volley.newRequestQueue(TrovaCaricoActivity.this);
 
@@ -91,13 +91,12 @@ public class TrovaCaricoActivity extends AppCompatActivity {
                                         int numTotColli = Integer.valueOf(carico.getString("numTotColli"));
                                         int numColliSpuntati = Integer.valueOf(carico.getString("numColliSpuntati"));
 
-                                        Carico car=new Carico(idcarico,codice,10,8,
-                                                2,destinazione,stato_spedizione,stato_carico,numTotColli,numColliSpuntati);
+                                        Carico car=new Carico(idcarico,codice,2,destinazione,stato_spedizione,stato_carico,numTotColli,numColliSpuntati);
                                         Intent i = new Intent(TrovaCaricoActivity.this, OrdineActivity.class);
                                         i.putExtra("idCarico", car.getIdcarico());
                                         i.putExtra("codice", car.getCodice());
-                                        i.putExtra("tot_colli", car.getTot_colli());
-                                        i.putExtra("colli_censiti", car.getColli_censiti());
+                                        i.putExtra("tot_colli", car.getNumTotColli());
+                                        i.putExtra("colli_censiti", car.getNumColliSpuntati());
                                         i.putExtra("num_sedute", car.getNum_sedute());
                                         i.putExtra("destinazione", car.getDestinazione());
                                         i.putExtra("stato_spedizione", car.getStato_spedizione());
@@ -119,7 +118,7 @@ public class TrovaCaricoActivity extends AppCompatActivity {
 
                 }
                 else {
-                    String url = Utils.URL_BE + "/carico-barcode/" + barcodeEdited;
+                    String url = Utils.getProperty("url.be",getApplicationContext()) + "/carico-barcode/" + barcodeEdited;
 
                     RequestQueue queue = Volley.newRequestQueue(TrovaCaricoActivity.this);
 
@@ -137,13 +136,13 @@ public class TrovaCaricoActivity extends AppCompatActivity {
                                         int numTotColli = Integer.valueOf(carico.getString("numTotColli"));
                                         int numColliSpuntati = Integer.valueOf(carico.getString("numColliSpuntati"));
 
-                                        Carico car = new Carico(idcarico, codice, 10, 8,
+                                        Carico car = new Carico(idcarico, codice,
                                                 2, destinazione, stato_spedizione, stato_carico,numTotColli,numColliSpuntati);
                                         Intent i = new Intent(TrovaCaricoActivity.this, OrdineActivity.class);
                                         i.putExtra("idCarico", car.getIdcarico());
                                         i.putExtra("codice", car.getCodice());
-                                        i.putExtra("tot_colli", car.getTot_colli());
-                                        i.putExtra("colli_censiti", car.getColli_censiti());
+                                        i.putExtra("tot_colli", car.getNumTotColli());
+                                        i.putExtra("colli_censiti", car.getNumColliSpuntati());
                                         i.putExtra("num_sedute", car.getNum_sedute());
                                         i.putExtra("destinazione", car.getDestinazione());
                                         i.putExtra("stato_spedizione", car.getStato_spedizione());

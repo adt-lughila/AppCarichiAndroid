@@ -17,6 +17,7 @@ public class Rigaordine implements Serializable {
     Integer nroColli;
     Integer colliSpuntati;
     int idordine;
+    boolean caricoSpedito;
 
     public int getIdrigarodine() {
         return idrigarodine;
@@ -106,6 +107,14 @@ public class Rigaordine implements Serializable {
 
     public void setColliSpuntati(int colliSPuntati){ this.colliSpuntati = colliSpuntati; }
 
+    public boolean isCaricoSpedito() {
+        return caricoSpedito;
+    }
+
+    public void setCaricoSpedito(boolean caricoSpedito) {
+        this.caricoSpedito = caricoSpedito;
+    }
+
     public Rigaordine(int idrigarodine, String codiceArticolo, String matricola, String barcode, String descrizione,
                       BigDecimal pezziordinati, BigDecimal pezzispediti, BigDecimal sconto, BigDecimal prezzo, int idordine,
                       int nroColli, int colliSpuntati) {
@@ -121,7 +130,10 @@ public class Rigaordine implements Serializable {
         this.idordine = idordine;
         this.nroColli = nroColli;
         this.colliSpuntati = colliSpuntati;
+        this.caricoSpedito = false;
     }
+
+
 
 
 

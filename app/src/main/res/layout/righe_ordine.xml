@@ -1,256 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/lightgray"
     android:layout_width="match_parent"
-    android:descendantFocusability = "blocksDescendants"
-    android:layout_height="80dp">
-
+    android:layout_height="80dp"
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/layy"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginVertical="10dp"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidero1"
+        app:layout_constraintTop_toBottomOf="@id/guiderohorizontal">
 
         <ImageView
             android:id="@+id/stato_rigaordine"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="5dp"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/redcircle" />
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:descendantFocusability="blocksDescendants"
-            android:orientation="horizontal">
-
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CODICE ARTICOLO"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/codicearticolo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CODICE ARTICOLO"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="MATRICOLA"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/matricola"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CAMPO 2"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="BARCODE"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/barcode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CAMPO 3"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="DESCRIZIONE"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/descrizione"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CAMPO 4"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="PEZZI ORDINATI"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/pezziordinati"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CAMPO 5"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="PEZZI SPEDITI"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/pezzispediti"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CAMPO 6"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="SCONTO"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/sconto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CAMPO 7"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="PREZZO"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/prezzo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CAMPO 8"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="142dp"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/insertnota"
-                    android:layout_width="100px"
-                    android:layout_height="100px"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="5dp"
-                    android:onClick="insertNota"
-                    android:src="@drawable/scrivinota"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <ImageButton
-                    android:id="@+id/checknote"
-                    android:layout_width="100px"
-                    android:layout_height="100px"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:onClick="checkNote"
-                    android:src="@drawable/legginota"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-        <Button
-            android:id="@+id/spuntabutton"
-            android:layout_width="95dp"
-            android:layout_height="100px"
-            android:backgroundTint="#cb504d"
-            android:text="SPUNTA"
-            android:textColor="@color/white" />
-
-
-
-
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_below="@+id/layy"
-        android:layout_marginTop="21dp"
-        android:backgroundTint="@color/black" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/guidero1"
+        app:layout_constraintEnd_toEndOf="@id/guidero2">
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CODICE ARTICOLO"
+            android:textSize="12sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/codicearticolo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CODICE ARTICOLO"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/guidero2"
+        app:layout_constraintEnd_toEndOf="@id/guidero3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MATRICOLA"
+            android:textSize="12sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/matricola"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CAMPO 2"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/guidero3"
+        app:layout_constraintEnd_toEndOf="@id/guidero4">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BARCODE"
+            android:textSize="12sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/barcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CAMPO 3"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="110dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/guidero4"
+        app:layout_constraintEnd_toEndOf="@id/guidero5">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DESCRIZIONE"
+            android:textSize="12sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/descrizione"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CAMPO 4"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/guidero5"
+        app:layout_constraintEnd_toEndOf="@id/guidero6">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PEZZI ORDINATI"
+            android:textSize="12sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/pezziordinati"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CAMPO 5"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/guidero6"
+        app:layout_constraintEnd_toEndOf="@id/guidero7">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PEZZI SPEDITI"
+            android:textSize="12sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/pezzispediti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CAMPO 6"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/guidero8"
+        app:layout_constraintEnd_toEndOf="@id/guidero9">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SCONTO"
+            android:textSize="12sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/sconto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CAMPO 7"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/guidero7"
+        app:layout_constraintEnd_toEndOf="@id/guidero8">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PREZZO"
+            android:textSize="12sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/prezzo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CAMPO 8"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/insertnota"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        android:onClick="insertNota"
+        android:src="@drawable/scrivinota"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/guidero9"
+        app:layout_constraintEnd_toEndOf="@id/guidero10"
+        app:layout_constraintTop_toBottomOf="@id/guiderohorizontal"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <ImageButton
+        android:id="@+id/checknote"
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:layout_gravity="center"
+        android:onClick="checkNote"
+        android:src="@drawable/legginota"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/guidero10"
+        app:layout_constraintEnd_toEndOf="@id/guidero11"
+        app:layout_constraintTop_toBottomOf="@id/guiderohorizontal"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <ImageButton
+        android:id="@+id/spuntanota"
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:layout_gravity="center"
+        android:onClick="spunta"
+        android:src="@drawable/spuntanote"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/guidero11"
+        app:layout_constraintEnd_toEndOf="@id/guidero12"
+        app:layout_constraintTop_toBottomOf="@id/guiderohorizontal"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.27" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.37" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.47" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.73" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.82" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.87" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidero12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guiderohorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

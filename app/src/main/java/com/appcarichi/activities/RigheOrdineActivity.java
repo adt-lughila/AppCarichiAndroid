@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.appcarichi.databinding.ActivityMainBinding;
-import com.example.appcarichi.databinding.RigheOrdineBinding;
+import com.appcarichi.databinding.ActivityMainBinding;
+import com.appcarichi.databinding.RigheOrdineBinding;
 
 public class RigheOrdineActivity extends AppCompatActivity {
 
