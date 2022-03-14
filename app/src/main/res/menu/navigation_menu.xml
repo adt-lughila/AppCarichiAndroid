@@ -14,6 +14,13 @@
     <item
         android:title="Contatti"
         android:checked="false"/>
+    <item
+        android:title="Gestione Carichi"
+        android:checked="false"/>
+    <item
+        android:title="Gestione Utente"
+        android:checked="false"
+        android:enabled="true"/>
     </group>
 
 

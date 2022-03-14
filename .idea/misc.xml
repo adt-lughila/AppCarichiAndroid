@@ -3,6 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout-sw300dp/activity_insert_nota.xml" value="0.1" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout-sw300dp/activity_main.xml" value="0.8273809523809523" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout-sw300dp/list_view.xml" value="0.3119533527696793" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout-sw300dp/note_list_view.xml" value="0.8273809523809523" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout-sw720dp/activity_main.xml" value="0.22861842105263158" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout-sw720dp/list_view.xml" value="0.22861842105263158" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/activity_insert_nota.xml" value="0.4" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/activity_main.xml" value="0.19384057971014493" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/activity_ordine.xml" value="0.4" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/activity_visualizza_note.xml" value="0.1425438596491228" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/list_view.xml" value="0.3789785344189489" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/login.xml" value="0.154296875" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/note_list_view.xml" value="0.1" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/order_list_view.xml" value="0.722567287784679" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/righe_ordine.xml" value="0.154296875" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/spunta_collo.xml" value="0.536" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/layout/trova_carico.xml" value="0.2" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/menu/navigation_menu.xml" value="0.4" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.158984375" />
+        <entry key="..\:/Lavoro/WS_ANDROID/sofas/AppCarichiAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.158984375" />
+        <entry key="..\:/Users/Acer/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.1" />
         <entry key="..\:/sviluppo android/ListViewEx/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1125" />
         <entry key="..\:/sviluppo android/ListViewEx/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1125" />
         <entry key="..\:/sviluppo android/ListViewEx/app/src/main/res/drawable/round_button.xml" value="0.1461111111111111" />
@@ -34,7 +56,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

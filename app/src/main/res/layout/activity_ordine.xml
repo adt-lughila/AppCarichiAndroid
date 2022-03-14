@@ -60,13 +60,38 @@
             android:layout_below="@+id/layy"
             android:backgroundTint="@color/black" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:background="@color/lightgray"
+        android:orientation="horizontal">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
             android:gravity="center"
-            android:background="@color/lightgray"
-            android:elevation="3dp"
-            android:orientation="horizontal">
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/spuntaordine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SPUNTA COLLO"
+                android:backgroundTint="#cb504d"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1">
 
             <Button
                 android:id="@+id/aggiornaordini"
@@ -76,6 +101,10 @@
                 android:backgroundTint="#cb504d"/>
 
         </LinearLayout>
+
+    </LinearLayout>
+
+
 
 
     </LinearLayout>

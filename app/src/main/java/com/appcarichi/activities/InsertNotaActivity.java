@@ -2,11 +2,15 @@ package com.appcarichi.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -17,22 +21,32 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appcarichi.R;
+import com.appcarichi.adapters.ListAdapter;
 import com.appcarichi.databinding.ActivityInsertNotaBinding;
+import com.appcarichi.model.Carico;
 import com.appcarichi.model.Nota;
 import com.appcarichi.model.NotaRigaOrdine;
 import com.appcarichi.model.Rigaordine;
 import com.appcarichi.utils.Utils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class InsertNotaActivity extends Activity {
 
     ActivityInsertNotaBinding binding;
     Button salva;
+    Spinner selectNota;
+    HashMap<String,Nota> mapNota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +59,10 @@ public class InsertNotaActivity extends Activity {
         setWindowHeight(32);
         setWindowWidth(67);
 
+        selectNota = (Spinner) findViewById(R.id.spinnernota);
+
+        componiSpinnerNota();
+
         Intent i = this.getIntent();
         Rigaordine ro = (Rigaordine) i.getSerializableExtra("rigaordine");
 
@@ -53,15 +71,19 @@ public class InsertNotaActivity extends Activity {
             @Override
             public void onClick(View view) {
 
+                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
                 EditText commentonota = (EditText) findViewById(R.id.commentonota);
                 String commento = commentonota.getText().toString();
-                Spinner descrizionenota = (Spinner) findViewById(R.id.spinnernota);
-                String descrizione = descrizionenota.getSelectedItem().toString();
-                int codicenota=getCodiceNota(descrizione);
 
-                Nota n = new Nota(codicenota, descrizione);
+                String descrizione = selectNota.getSelectedItem().toString();
+                //int codicenota=getCodiceNota(descrizione);
 
-                NotaRigaOrdine nRo = new NotaRigaOrdine(ro,n,commento,"utente");
+                String utente = settings.getString("username","utente");
+
+                Nota n = mapNota.get(descrizione);
+
+                NotaRigaOrdine nRo = new NotaRigaOrdine(ro,n,commento,utente);
 
                 String url = Utils.getProperty("url.be",getApplicationContext())+"/inserisci-nota";
                 RequestQueue requestQueue = Volley.newRequestQueue(InsertNotaActivity.this);
@@ -70,13 +92,13 @@ public class InsertNotaActivity extends Activity {
                 JSONObject nota = new JSONObject();
                 JSONObject rigaordine = new JSONObject();
                 try{
-                    nota.put("codiceNota",codicenota);
-                    nota.put("descrizioneNota",descrizione);
+                    nota.put("codiceNota",n.getCodicenota());
+                    nota.put("descrizioneNota",n.getDescrizione());
                     rigaordine.put("idRigaOrdine",ro.getIdrigarodine());
                     nroData.put("nota",nota);
                     nroData.put("rigaOrdine",rigaordine);
                     nroData.put("commento",commento);
-                    nroData.put("utente","utente");
+                    nroData.put("utente",utente);
                 }catch(JSONException e){
                     e.printStackTrace();
                 }
@@ -140,6 +162,48 @@ public class InsertNotaActivity extends Activity {
             return 5;
         }
         else{return 0;}
+    }
+
+    private void componiSpinnerNota() {
+        String url= Utils.getProperty("url.be",getApplicationContext())+"/note";
+
+        ArrayList<Nota> carichi=new ArrayList<>();
+        RequestQueue queue=Volley.newRequestQueue(this);
+
+        //recupero dati dal db
+        JsonArrayRequest request=new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>(){
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<Nota> notaList = new ArrayList<Nota>();
+                            mapNota = new HashMap<String, Nota>();
+                            for(int i=0; i<response.length(); i++){
+                                JSONObject notaObject=response.getJSONObject(i);
+                                int id=notaObject.getInt("idNota");
+                                int codice=notaObject.getInt("codiceNota");
+                                String descrizione=notaObject.getString("descrizioneNota");
+
+                                Nota nota = new Nota(id,codice,descrizione);
+                                notaList.add(nota);
+                                mapNota.put(nota.toString(),nota);
+                            }
+
+                            ArrayAdapter<Nota> adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, notaList);
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            selectNota.setAdapter(adapter);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        queue.add(request);
     }
 
 

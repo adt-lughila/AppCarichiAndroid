@@ -20,6 +20,7 @@
         <activity android:name="com.appcarichi.activities.MainActivity"></activity>
         <activity android:name="com.appcarichi.activities.RigheOrdineActivity"></activity>
         <activity android:name="com.appcarichi.activities.OrdineActivity"></activity>
+        <activity android:name="com.appcarichi.activities.SpuntaColloOrdineActivity"></activity>
         <activity android:name="com.appcarichi.activities.LoginActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize|keyboard">

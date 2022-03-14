@@ -64,6 +64,18 @@ public class OrdineActivity extends AppCompatActivity {
 
         init(idcarico,codice);
 
+        Button spuntaOrdine=findViewById(R.id.spuntaordine);
+        spuntaOrdine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),SpuntaColloOrdineActivity.class);
+                intent.putExtra("idCarico",idcarico);
+                intent.putExtra("codice",codice);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         Button aggiorna=findViewById(R.id.aggiornaordini);
         aggiorna.setOnClickListener(new View.OnClickListener() {
             @Override

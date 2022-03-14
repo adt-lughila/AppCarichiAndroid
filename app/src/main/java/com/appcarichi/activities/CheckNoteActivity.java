@@ -75,12 +75,13 @@ public class CheckNoteActivity extends Activity {
                                 JSONObject notaRigaOrdine = response.getJSONObject(i);
                                 JSONObject nota = notaRigaOrdine.getJSONObject("nota");
                                 int codicenota = nota.getInt("codiceNota");
+                                int idNota = nota.getInt("idNota");
                                 String descrizione = nota.getString("descrizioneNota");
                                 int idNotaRigaOrdine=notaRigaOrdine.getInt("idNotaRigaOrdine");
                                 String utente=notaRigaOrdine.getString("utente");
                                 String commento=notaRigaOrdine.getString("commento");
 
-                                Nota n = new Nota(codicenota,descrizione);
+                                Nota n = new Nota(idNota,codicenota,descrizione);
                                 NotaRigaOrdine nro=new NotaRigaOrdine(idNotaRigaOrdine,null,n,commento,utente);
                                 note.add(nro);
 

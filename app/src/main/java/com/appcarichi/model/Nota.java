@@ -7,10 +7,10 @@ public class Nota implements Serializable {
     int idNota,codicenota;
     String descrizione;
 
-    public Nota(int codicenota, String descrizione) {
+    public Nota(int idNota, int codicenota, String descrizione) {
         this.codicenota = codicenota;
         this.descrizione = descrizione;
-
+        this.idNota = idNota;
     }
 
     public int getIdNota() {return idNota;}
@@ -31,4 +31,12 @@ public class Nota implements Serializable {
         this.descrizione = descrizione;
     }
 
+    public void setIdNota(int idNota) {
+        this.idNota = idNota;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s - %s",codicenota,descrizione);
+    }
 }
